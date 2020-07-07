@@ -43,7 +43,7 @@
 
       &[data-index='1'],
       &[data-index='2'] {
-        transform: translateX(100vw - 80px);
+        transform: translateX(calc(100vw - 80px));
       }
 
       &[data-index='-2'],
