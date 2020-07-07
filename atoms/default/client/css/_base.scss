@@ -1,0 +1,23 @@
+.atf {
+  &__wrapper {
+    margin: 0 10px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  &__sheet {
+    @include mq(tablet) {
+      width: 700px;
+      padding: 20px;
+      border-left: 1px solid #dcdcdc;
+      border-right: 1px solid #dcdcdc;
+    }
+    margin: 0 auto;
+    p {
+      max-width: 620px;
+    }
+  }
+}

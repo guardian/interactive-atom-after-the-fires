@@ -1,0 +1,73 @@
+.content__meta-container,
+.meta {
+  font-family: "Guardian Headline Full", "Guardian Text Egyptian Web", Georgia, serif !important;
+  .meta__extras,
+  .inline-icon {
+    border-color: #888; // looks like 999
+  }
+
+  @include mq(mobileMedium) {
+    display: flex;
+    padding-bottom: 18px;
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 0;
+      bottom: 0;
+      top: auto;
+      height: 3px;
+      border-top: 1px solid #999;
+      border-bottom: 1px solid #999;
+      background-image: none;
+      margin: 0;
+      width: auto;
+    }
+    &:after {
+      bottom: 8px;
+    }
+
+    .meta__contact-wrap,
+    .meta__extras {
+      width: 50%;
+    }
+    .meta__extras {
+      margin-top: -6px;
+      border-left: 1px solid #999;
+      border-top: 0;
+      .meta__social {
+        margin-left: 10px;
+      }
+    }
+  }
+  @include mq(tablet) {
+    padding-bottom: 24px;
+  }
+
+  // Closing meta area
+  .gs-container.u-cf:last-child & {
+    padding: 24px 0 0;
+    margin-top: 9px;
+    svg path {
+      fill: #c70000;
+    }
+    &:before {
+      top: 0;
+      bottom: auto;
+    }
+    &:after {
+      top: 8px;
+      bottom: auto;
+    }
+  }
+
+}
+
+// App
+.ios .article__header .meta,
+.android .meta {
+  padding-top: 3px !important;
+}

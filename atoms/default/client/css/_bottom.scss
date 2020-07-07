@@ -1,0 +1,28 @@
+.js-most-popular-footer {
+  @include mq(tablet) {
+    padding-bottom: 0;
+    .fc-container__inner {
+      border-color: #999;
+      padding-bottom: 12px;
+    }
+  }
+  .fc-container__inner {
+    @include mq(leftCol) {
+      padding-left: 19px;
+      padding-right: 19px;
+      border-left: 1px solid #999;
+      border-right: 1px solid #999;
+    }
+  }
+}
+
+#onward:empty,
+#more-in-section:empty {
+  display: none;
+}
+
+.footer__primary {
+  .gs-container {
+    border-color: #999;
+  }
+}

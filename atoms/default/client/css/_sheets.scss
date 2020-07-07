@@ -1,0 +1,66 @@
+@include mq(desktop) {
+  body {
+    background-color: #f6f6f6;
+  }
+  .atf {
+    &__wrapper {
+      width: auto;
+      overflow: hidden;
+      position: relative;
+    }
+    &__sheet {
+      width: 820px;
+      background-color: #fff;
+      margin: 40px auto;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: none;
+      border: 1px solid #dcdcdc;
+
+      @include mq(leftCol) {
+        width: 980px;
+      }
+
+      &__inner {
+        margin: 0 20px;
+      }
+
+      transition: transform ease-out 1s;
+
+      &[data-index='-2'],
+      &[data-index='-1'],
+      &[data-index='0'],
+      &[data-index='1'],
+      &[data-index='2'] {
+        display: block;
+      }
+
+      &[data-index='-2'],
+      &[data-index='-1'] {
+        transform: translateX(-120vw);
+      }
+
+      &[data-index='1'],
+      &[data-index='2'] {
+        transform: translateX(100vw - 80px);
+      }
+
+      &[data-index='-2'],
+      &[data-index='-1'],
+      &[data-index='1'],
+      &[data-index='2'] {
+        position: fixed;
+        top: 0;
+      }
+
+      [data-scroll='mid'] &[data-index='-1'] {
+        transform: translateX(-90vw);
+      }
+      [data-scroll='mid'] &[data-index='1'] {
+        transform: translateX(90vw);
+      }
+
+    }
+  }
+}

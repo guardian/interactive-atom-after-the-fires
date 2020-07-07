@@ -3,11 +3,17 @@
 @import "palette";
 // @import "enhancer";
 
+
+body > .element-atom,
 .interactive-atom {
     margin: 0;
     padding: 0;
 }
 
-.after-the-fires__wrapper {
-    background-color: cornsilk;
-}
+
+@import "base";
+@import "meta";
+@import "bottom";
+
+@import "sheets";
+
