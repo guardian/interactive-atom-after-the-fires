@@ -1,6 +1,13 @@
 .atf {
   &__wrapper {
     margin: 0 10px;
+    @include mq(mobileLandscape) {
+      margin: 0 20px;
+    }
+    @include mq(tablet) {
+      width: 740px;
+      margin: 0 auto;
+    }
   }
 
   img {
@@ -10,14 +17,16 @@
 
   &__sheet {
     @include mq(tablet) {
-      width: 700px;
       padding: 20px;
       border-left: 1px solid #dcdcdc;
       border-right: 1px solid #dcdcdc;
+      &__inner {
+        width: 620px;
+      }
     }
-    margin: 0 auto;
     p {
       max-width: 620px;
+      font-size: 17px;
     }
   }
 }
