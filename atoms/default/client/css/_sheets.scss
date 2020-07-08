@@ -1,3 +1,7 @@
+$sheet-desktop: 820px;
+$sheet-leftCol: 980px;
+$sheet-wide: 980px;
+
 @include mq(desktop) {
   body {
     background-color: #f6f6f6;
@@ -9,7 +13,6 @@
       position: relative;
     }
     &__sheet {
-      width: 820px;
       background-color: #fff;
       margin: 40px auto;
       position: relative;
@@ -17,9 +20,10 @@
       min-height: 100vh;
       display: none;
       border: 1px solid #dcdcdc;
+      width: $sheet-desktop;
 
       @include mq(leftCol) {
-        width: 980px;
+        width: $sheet-leftCol;
       }
 
       transition: transform ease-out 1s;
@@ -32,29 +36,43 @@
         display: block;
       }
 
-      &[data-index='-2'],
-      &[data-index='-1'] {
-        transform: translateX(-120vw);
+      &[data-index='-2'] {
+        left: -100vw;
       }
 
-      &[data-index='1'],
+      &[data-index='-1'] {
+        left: (-$sheet-desktop);
+        @include mq(leftCol) {
+          left: (-$sheet-leftCol);
+        }
+        @include mq(wide) {
+          left: (-$sheet-wide + 40px);
+        }
+
+      }
+
+      &[data-index='1'] {
+        left: calc(100vw - 40px);
+        @include mq(wide) {
+          left: calc(100vw - 80px);
+        }
+      }
+
       &[data-index='2'] {
-        transform: translateX(calc(100vw - 80px));
+        left: 100vw;
       }
 
       &[data-index='-2'],
       &[data-index='-1'],
       &[data-index='1'],
       &[data-index='2'] {
-        position: fixed;
+        position: absolute;
         top: 0;
       }
 
-      [data-scroll='mid'] &[data-index='-1'] {
-        transform: translateX(-90vw);
-      }
+      [data-scroll='mid'] &[data-index='-1'],
       [data-scroll='mid'] &[data-index='1'] {
-        transform: translateX(90vw);
+        position: fixed;
       }
 
     }
