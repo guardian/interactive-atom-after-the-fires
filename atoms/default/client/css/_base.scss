@@ -17,7 +17,7 @@
 
   &__sheet {
     @include mq(tablet) {
-      padding: 20px;
+      padding: 0 20px;
       border-left: 1px solid #dcdcdc;
       border-right: 1px solid #dcdcdc;
       &__inner {

@@ -51,6 +51,11 @@ $sheet-wide: 980px;
 
       }
 
+      &[data-index='-1'],
+      &[data-index='1'] {
+        cursor: pointer;
+      }
+
       &[data-index='1'] {
         left: calc(100vw - 40px);
         @include mq(wide) {
