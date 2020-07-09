@@ -67,6 +67,7 @@ function shapeDom() {
 
 
 function slideSheet(n) {
+  console.log('going', n)
   document.querySelectorAll('.sheet').forEach((s) => {
     s.dataset.index = (parseInt(s.dataset.index) + (-1 * n));
   });
@@ -106,10 +107,19 @@ function addSheetNav() {
     if (prevEl) {
       prevEl.classList.add('nav__prev');
       navWrapper.appendChild(prevEl);
+      prevEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        slideSheet(-1);
+      })
+
     }
     if (nextEl) {
       nextEl.classList.add('nav__next');
       navWrapper.appendChild(nextEl);
+      nextEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        slideSheet(1);
+      })
     }
 
     sheet.querySelector('.sheet__inner').appendChild(navWrapper);
