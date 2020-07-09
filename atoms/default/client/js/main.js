@@ -95,30 +95,49 @@ function newArticleSheet(interactiveBase) {
 function addSheetNav() {
 
   const sheetAll = document.querySelectorAll('.sheet');
-  console.log('will add now');
   sheetAll.forEach((sheet) => {
-    console.log('adding to sheet', sheet);
 
     let navWrapper = document.createElement('div');
     navWrapper.classList.add('nav__wrapper');
 
-    const prev = sheet.previousElementSibling;
-    const next = sheet.nextElementSibling;
+    const prevEl = createNavEl(sheet.previousElementSibling);
+    const nextEl = createNavEl(sheet.nextElementSibling);
 
-    if (prev) {
-      let navPrev = document.createElement('div');
-      navPrev.classList.add('nav__el', 'nav__prev');
-      navPrev.innerHTML = 'PREV';
-      navWrapper.appendChild(navPrev);
+    if (prevEl) {
+      prevEl.classList.add('nav__prev');
+      navWrapper.appendChild(prevEl);
     }
-    if (next) {
-      let navNext = document.createElement('div');
-      navNext.classList.add('nav__el', 'nav__next');
-      navNext.innerHTML = 'NEXT';
-      navWrapper.appendChild(navNext);
+    if (nextEl) {
+      nextEl.classList.add('nav__next');
+      navWrapper.appendChild(nextEl);
     }
 
     sheet.querySelector('.sheet__inner').appendChild(navWrapper);
   });
+
+}
+
+function createNavEl(el) {
+  if (!el) {
+    return false;
+  }
+
+  let navEl = document.createElement('div');
+  navEl.classList.add('nav__el');
+
+  // Add title
+  const title = el.querySelector('h2').innerText;
+  let titleEl = document.createElement('div');
+  titleEl.classList.add('nav__title');
+  titleEl.innerText = title;
+  navEl.appendChild(titleEl)
+  
+  // Add image
+  const mainImage = el.querySelector('.element-image.element--immersive') || el.querySelector('.element-image.element--showcase');
+  if (mainImage) {
+    navEl.appendChild(mainImage.cloneNode(true));
+  }
+
+  return navEl;
 
 }

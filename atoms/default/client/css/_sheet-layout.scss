@@ -21,6 +21,7 @@ $sheet-wide: 980px;
       display: none;
       border: 1px solid #dcdcdc;
       width: $sheet-desktop;
+      margin-bottom: calc(100vh - 270px);
 
       @include mq(leftCol) {
         width: $sheet-leftCol;
