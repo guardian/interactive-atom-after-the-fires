@@ -2,25 +2,19 @@
 // el.src = '<%= atomPath %>/app.js';
 // document.body.appendChild(el);
 
-console.log("HUIHHJJ");
-console.log("HUIHHJJ");
-
 startInteractive();
 
 function startInteractive() {
   let int;
-  let i = 0;
   int = setInterval(() => {
     let keyEl = document.querySelector('.atf__wrapper');
     if (keyEl) {
       clearInterval(int);
-
-      console.log('starting', i++);
       shapeDom();
       fixedSideSheetsOnScroll();
       addSheetNav();
     }
-  }, 1000)
+  }, 10)
 }
 
 
