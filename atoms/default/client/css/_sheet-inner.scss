@@ -99,8 +99,6 @@
     }
     @include mq(desktop) {
       margin-right: -20px;
-      // width: 520px;
-      // clear: left;
     }
     @include mq(leftCol) {
       float: right;
@@ -156,6 +154,7 @@
       figcaption {
         padding-left: 0;
         padding-right: 20px;
+        color: #121212;
       }
     }
     @include mq(leftCol) {
@@ -211,10 +210,6 @@
     strong {
       font-weight: inherit;
       color: #121212;
-    }
-    .element-image__caption,
-    .element-image__caption {
-      display: block;
     }
   }
 
