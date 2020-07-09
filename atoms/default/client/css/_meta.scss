@@ -1,73 +1,151 @@
-.content__meta-container,
-.meta {
-  font-family: "Guardian Headline Full", "Guardian Text Egyptian Web", Georgia, serif !important;
-  .meta__extras,
-  .inline-icon {
-    border-color: #888; // looks like 999
+.meta-source {
+  position: relative;
+  padding-top: 16px;
+  margin: 8px 0 24px;
+  @include mq(tablet) {
+    padding-left: 20px;
+    margin-left: -20px;
+  }
+  @include mq(desktop) {
+    margin-right: -20px;
+  }
+  .content__meta-container {
+    @include mq(leftCol) {
+      width: auto;
+      position: relative;
+      margin-left: 0;
+      margin-bottom: 24px;
+    }
   }
 
-  @include mq(mobileMedium) {
-    display: flex;
-    padding-bottom: 18px;
-    &:before,
-    &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 0;
-      bottom: 0;
-      top: auto;
-      height: 3px;
-      border-top: 1px solid #999;
-      border-bottom: 1px solid #999;
-      background-image: none;
-      margin: 0;
-      width: auto;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+  }
+  &:before {
+    top: 0;
+  }
+  &:after {
+    top: 6px;
+  }
+  .meta__contact-wrap {
+    .byline a,
+    .meta__contact-method a {
+      color: #c70000;
     }
-    &:after {
-      bottom: 8px;
-    }
-
-    .meta__contact-wrap,
-    .meta__extras {
-      width: 50%;
-    }
-    .meta__extras {
-      margin-top: -6px;
-      border-left: 1px solid #999;
-      border-top: 0;
-      .meta__social {
-        margin-left: 10px;
+    .meta__contact-method {
+      margin-right: 8px;
+      @include mq(leftCol) {
+        display: inline-block;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      a {
+        font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-size: 14px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .inline-icon {
+        position: relative;
+        top: 1px;
+        fill: #c70000;
       }
     }
+    .content__dateline {
+      font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-size: 14px;
+      margin-top: 4px;
+    }
   }
-  @include mq(tablet) {
-    padding-bottom: 24px;
-  }
-
-  // Closing meta area
-  .gs-container.u-cf:last-child & {
-    padding: 24px 0 0;
-    margin-top: 9px;
-    svg path {
+  .meta__extras {
+    .ios &,
+    .android & {
+      display: none;
+    }
+    .social__action .inline-icon {
+      background-color: #fff;
+      border: 1px solid #dcdcdc;
       fill: #c70000;
     }
-    &:before {
-      top: 0;
-      bottom: auto;
-    }
-    &:after {
-      top: 8px;
-      bottom: auto;
-    }
   }
-
 }
+// .content__meta-container,
+// .meta {
+//   font-family: "Guardian Headline Full", "Guardian Text Egyptian Web", Georgia, serif !important;
+//   .meta__extras,
+//   .inline-icon {
+//     border-color: #888; // looks like 999
+//   }
 
-// App
-.ios .article__header .meta,
-.android .meta {
-  padding-top: 3px !important;
-}
+//   @include mq(mobileMedium) {
+//     display: flex;
+//     padding-bottom: 18px;
+//     &:before,
+//     &:after {
+//       content: '';
+//       display: block;
+//       position: absolute;
+//       left: 0;
+//       right: 0;
+//       height: 0;
+//       bottom: 0;
+//       top: auto;
+//       height: 3px;
+//       border-top: 1px solid #999;
+//       border-bottom: 1px solid #999;
+//       background-image: none;
+//       margin: 0;
+//       width: auto;
+//     }
+//     &:after {
+//       bottom: 8px;
+//     }
+
+//     .meta__contact-wrap,
+//     .meta__extras {
+//       width: 50%;
+//     }
+//     .meta__extras {
+//       margin-top: -6px;
+//       border-left: 1px solid #999;
+//       border-top: 0;
+//       .meta__social {
+//         margin-left: 10px;
+//       }
+//     }
+//   }
+//   @include mq(tablet) {
+//     padding-bottom: 24px;
+//   }
+
+//   // Closing meta area
+//   .gs-container.u-cf:last-child & {
+//     padding: 24px 0 0;
+//     margin-top: 9px;
+//     svg path {
+//       fill: #c70000;
+//     }
+//     &:before {
+//       top: 0;
+//       bottom: auto;
+//     }
+//     &:after {
+//       top: 8px;
+//       bottom: auto;
+//     }
+//   }
+
+// }
+
+// // App
+// .ios .article__header .meta,
+// .android .meta {
+//   padding-top: 3px !important;
+// }

@@ -91,6 +91,7 @@
     padding: 10px 10px 18px;
     margin-left: -10px;
     margin-bottom: 12px;
+    clear: both;
     @include mq(mobileLandscape) {
       padding: 10px 20px 18px;
       margin-left: -20px;
@@ -98,10 +99,12 @@
     }
     @include mq(desktop) {
       margin-right: -20px;
+      // width: 520px;
+      // clear: left;
     }
     @include mq(leftCol) {
       float: right;
-      clear: right;
+      clear: both;
       width: 300px;
       margin-right: -380px;
     }
@@ -129,6 +132,35 @@
         font-size: 24px;
       }
 
+    }
+  }
+
+  .element--thumbnail,
+  .element--thumbnail.element-image  {
+    width: auto;
+    float: none;
+    margin-right: 0;
+    @include mq(mobileLandscape) {
+      width: 280px;
+      max-width: 33vw;
+      margin-left: 20px;
+      float: right;
+      clear: right;
+    }
+    @include mq(tablet) {
+      max-width: none;
+      margin-right: -80px;
+    }
+    @include mq(desktop) {
+      margin-right: -220px;
+      figcaption {
+        padding-left: 0;
+        padding-right: 20px;
+      }
+    }
+    @include mq(leftCol) {
+      margin-right: -380px;
+      width: 340px;
     }
   }
 

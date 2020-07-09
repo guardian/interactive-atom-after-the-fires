@@ -21,7 +21,6 @@ function fixedSideSheetsOnScroll() {
   const atfWrapper = document.querySelector('.atf__wrapper');
   window.addEventListener('scroll', () => {
     const top = atfWrapper.getBoundingClientRect().top;
-    console.log(top);
     if (top > 0) {
       document.body.dataset.scroll = 'top';
     } else {
@@ -32,15 +31,15 @@ function fixedSideSheetsOnScroll() {
 
 function shapeDom() {
   const interactiveBase = document.querySelector('.atf__wrapper'),
-        interactiveRoot = interactiveBase.parentElement.parentElement,
-        articleRoot = interactiveRoot.parentElement,
-        selectedElements = ['p', 'h2', 'figure', 'blockquote'].map((el) => ':scope > ' + el).join(','),
-        articleChildren = articleRoot.querySelectorAll(selectedElements);
+    interactiveRoot = interactiveBase.parentElement.parentElement,
+    articleRoot = interactiveRoot.parentElement,
+    selectedElements = ['p', 'h2', 'figure', 'blockquote'].map((el) => ':scope > ' + el).join(','),
+    articleChildren = articleRoot.querySelectorAll(selectedElements);
 
   // Move content to sheets
   articleChildren.forEach((el) => {
-    if (el!==interactiveRoot) {
-      if (el.tagName=='H2' || el === articleChildren[0]) {
+    if (el !== interactiveRoot) {
+      if (el.tagName == 'H2' || el === articleChildren[0]) {
         newArticleSheet(interactiveBase);
       }
       interactiveBase.querySelector('.sheet:last-child .sheet__inner').appendChild(el);
@@ -50,17 +49,25 @@ function shapeDom() {
   interactiveBase.querySelectorAll('.sheet').forEach((sheet) => {
     sheet.addEventListener('click', () => {
       const i = sheet.dataset.index;
-      if (i==-1 || i==1) {
+      if (i == -1 || i == 1) {
         slideSheet(i);
       }
     })
-  })
+  });
+
+  // Create meta area
+  const metaEl = document.querySelector('.meta-source');
+  const firstSheet = document.querySelector('.sheet__inner');
+  const firstStandy = firstSheet.querySelector('blockquote');
+  if (metaEl && firstSheet && firstStandy) {
+    firstSheet.insertBefore(metaEl, firstStandy.nextElementSibling);
+  }
 }
 
 
 function slideSheet(n) {
   document.querySelectorAll('.sheet').forEach((s) => {
-    s.dataset.index = (parseInt(s.dataset.index)+(-1*n));
+    s.dataset.index = (parseInt(s.dataset.index) + (-1 * n));
   });
 }
 
