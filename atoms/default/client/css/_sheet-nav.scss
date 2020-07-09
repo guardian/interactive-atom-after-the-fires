@@ -3,6 +3,7 @@
     display: none;
     white-space: nowrap;
     clear: both;
+    
     @include mq(desktop) {
       display: block;
       vertical-align: top;
