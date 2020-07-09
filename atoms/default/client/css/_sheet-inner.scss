@@ -8,6 +8,7 @@
     position: relative;
   }
 
+  // Page headline
   h2:first-child {
     font-family: "Guardian Titlepiece","Guardian Headline Full","Guardian Headline","Guardian Egyptian Web",Georgia,serif;
     display: inline-block;
@@ -41,6 +42,96 @@
     }
   }
 
+  // Standfirsts
+  blockquote:not(.quoted) {
+    p {
+      font-family: "Guardian Headline Full","Guardian Headline","Guardian Egyptian Web",Georgia,serif;
+      font-weight: bold;
+      color: #c70000;
+      line-height: 26px;
+      font-size: 20px;
+      @include mq(desktop) {
+        line-height: 32px;
+        font-size: 24px;
+      }
+    }
+    & + p {
+      position: relative;
+      padding-top: 12px;
+      margin-top: 32px;
+      &:before {
+        position: absolute;
+        content: '';
+        top: 0;
+        background-color: #dcdcdc;
+        height: 1px;
+        left: -10px;
+        right: -10px;
+
+        @include mq(mobileLandscape) {
+          left: -20px;
+          right: auto;
+          width: 100vw;
+        }
+        @include mq(tablet) {
+          left: -20px;
+          right: 0;
+          width: auto;
+        }
+        @include mq(desktop) {
+          right: -20px;
+        }
+      }
+    }
+  }
+
+  // Quotes
+  blockquote.quoted {
+    background-color: #FEF9F5;
+    padding: 10px 10px 18px;
+    margin-left: -10px;
+    margin-bottom: 12px;
+    @include mq(mobileLandscape) {
+      padding: 10px 20px 18px;
+      margin-left: -20px;
+      margin-bottom: 12px;
+    }
+    @include mq(desktop) {
+      margin-right: -20px;
+    }
+    @include mq(leftCol) {
+      float: right;
+      clear: right;
+      width: 300px;
+      margin-right: -380px;
+    }
+
+    p {
+      &:before {
+        content: '“';
+        display: block;
+        font-size: 3em;
+        position: relative;
+        bottom: -0.2em;
+        left: -1px;
+      }
+      font-family: "Guardian Headline Full","Guardian Headline","Guardian Egyptian Web",Georgia,serif;
+      line-height: 26px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #c70000;
+      em {
+        font-weight: 200;
+        font-style: italic;
+      }
+      @include mq(desktop) {
+        line-height: 32px;
+        font-size: 24px;
+      }
+
+    }
+  }
+
   .element-image {
     @include mq(desktop) {
       margin-left: -20px;
@@ -61,6 +152,11 @@
     @include mq(mobileLandscape) {
       margin-left: -20px;
       margin-right: -20px;
+      figcaption {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 620px;
+      }
     }
     @include mq(tablet) {
       margin-right: -100px;
