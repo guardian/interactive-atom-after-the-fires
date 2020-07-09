@@ -2,20 +2,27 @@
 // el.src = '<%= atomPath %>/app.js';
 // document.body.appendChild(el);
 
+console.log("HUIHHJJ");
+console.log("HUIHHJJ");
+
 startInteractive();
 
 function startInteractive() {
   let int;
+  let i = 0;
   int = setInterval(() => {
     let keyEl = document.querySelector('.atf__wrapper');
     if (keyEl) {
       clearInterval(int);
 
+      console.log('starting', i++);
       shapeDom();
-      fixedSideSheetsOnScroll()
+      fixedSideSheetsOnScroll();
+      addSheetNav();
     }
-  }, 10)
+  }, 1000)
 }
+
 
 function fixedSideSheetsOnScroll() {
   const atfWrapper = document.querySelector('.atf__wrapper');
@@ -89,4 +96,35 @@ function newArticleSheet(interactiveBase) {
   }
 
   sheet.dataset.index = i;
+}
+
+function addSheetNav() {
+
+  const sheetAll = document.querySelectorAll('.sheet');
+  console.log('will add now');
+  sheetAll.forEach((sheet) => {
+    console.log('adding to sheet', sheet);
+
+    let navWrapper = document.createElement('div');
+    navWrapper.classList.add('nav__wrapper');
+
+    const prev = sheet.previousElementSibling;
+    const next = sheet.nextElementSibling;
+
+    if (prev) {
+      let navPrev = document.createElement('div');
+      navPrev.classList.add('nav__el', 'nav__prev');
+      navPrev.innerHTML = 'PREV';
+      navWrapper.appendChild(navPrev);
+    }
+    if (next) {
+      let navNext = document.createElement('div');
+      navNext.classList.add('nav__el', 'nav__next');
+      navNext.innerHTML = 'NEXT';
+      navWrapper.appendChild(navNext);
+    }
+
+    sheet.querySelector('.sheet__inner').appendChild(navWrapper);
+  });
+
 }
