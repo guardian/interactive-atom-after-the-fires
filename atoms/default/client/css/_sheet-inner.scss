@@ -1,4 +1,9 @@
 .atf .sheet {
+  @include mq($until:tablet) {
+    &:not(:first-child) {
+      margin-top: 32px;
+    }
+  }
   &__inner {
     position: relative;
   }
@@ -11,24 +16,28 @@
     color: #fff;
     position: relative;
     z-index: 20;
-    margin-top: calc(60vw - 46px);
     font-size: 42px;
     line-height: 1.15;
-    padding: 3px 6px;
+    padding: 3px 8px 3px 10px;
+    margin-top: calc(60vw - 46px);
+    margin-left: -10px;
     margin-bottom: 12px;
     @include mq(tablet) {
       margin-top: 392px;
       font-size: 50px;
-      padding: 3px 10px;
+      padding: 4px 16px 6px 19px;
+      margin-left: -20px;
+      white-space: nowrap;
+      // width: 684px;
     }
     @include mq(desktop) {
-      margin-top: 439px;
-      margin-left: -20px;
-      font-size: 70px;
-      padding: 8px 10px;
+      padding: 8px 16px 8px 20px;
+      margin-top: 446px;
+      font-size: 62px;
     }
     @include mq(leftCol) {
       margin-top: 534px;
+      font-size: 70px;
     }
   }
 
@@ -45,6 +54,10 @@
   .element--showcase {
     margin-left: -10px;
     margin-right: -10px;
+    figcaption {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
     @include mq(mobileLandscape) {
       margin-left: -20px;
       margin-right: -20px;
