@@ -30,6 +30,7 @@ function fixedSideSheetsOnScroll() {
   });
 }
 
+// not checked
 function shapeDom() {
   const interactiveBase = document.querySelector('.atf__wrapper'),
     interactiveRoot = interactiveBase.parentElement.parentElement,
@@ -43,17 +44,8 @@ function shapeDom() {
       if (el.tagName == 'H2' || el === articleChildren[0]) {
         newArticleSheet(interactiveBase);
       }
-      interactiveBase.querySelector('.sheet:last-child .sheet__inner').appendChild(el);
+      interactiveBase.querySelector('.sheet__outer:last-child .sheet__inner').appendChild(el);
     }
-  });
-
-  interactiveBase.querySelectorAll('.sheet').forEach((sheet) => {
-    sheet.addEventListener('click', () => {
-      const i = sheet.dataset.index;
-      if (i == -1 || i == 1) {
-        slideSheet(i);
-      }
-    })
   });
 
   // Create meta area
@@ -65,24 +57,20 @@ function shapeDom() {
   }
 }
 
-
-function slideSheet(n) {
-  console.log('going', n)
-  document.querySelectorAll('.sheet').forEach((s) => {
-    s.dataset.index = (parseInt(s.dataset.index) + (-1 * n));
-  });
-}
-
 function newArticleSheet(interactiveBase) {
 
+  let sheetOuter = document.createElement('div');
+  sheetOuter.classList.add('sheet__outer', 'atf__sheet__outer');
   let sheet = document.createElement('div');
   sheet.classList.add('sheet', 'atf__sheet');
   let sheetInner = document.createElement('div');
   sheetInner.classList.add('sheet__inner', 'atf__sheet__inner');
-  sheet.appendChild(sheetInner);
-  interactiveBase.appendChild(sheet);
 
-  const prevSheet = sheet.previousElementSibling;
+  sheetOuter.appendChild(sheet);
+  sheet.appendChild(sheetInner);
+  interactiveBase.appendChild(sheetOuter);
+
+  const prevSheet = sheetOuter.previousElementSibling;
   let i;
   if (prevSheet == null) {
     i = 0;
@@ -90,12 +78,12 @@ function newArticleSheet(interactiveBase) {
     i = parseInt(prevSheet.dataset.index) + 1;
   }
 
-  sheet.dataset.index = i;
+  sheetOuter.dataset.index = i;
 }
 
 function addSheetNav() {
 
-  const sheetAll = document.querySelectorAll('.sheet');
+  const sheetAll = document.querySelectorAll('.sheet__outer');
   sheetAll.forEach((sheet) => {
 
     let navWrapper = document.createElement('div');
@@ -108,8 +96,7 @@ function addSheetNav() {
       prevEl.classList.add('nav__prev');
       navWrapper.appendChild(prevEl);
       prevEl.addEventListener('click', (e) => {
-        e.stopPropagation();
-        slideSheet(-1);
+        // navigate to previous here
       })
 
     }
@@ -117,8 +104,7 @@ function addSheetNav() {
       nextEl.classList.add('nav__next');
       navWrapper.appendChild(nextEl);
       nextEl.addEventListener('click', (e) => {
-        e.stopPropagation();
-        slideSheet(1);
+        // navigate to next here
       })
     }
 
@@ -141,7 +127,7 @@ function createNavEl(el) {
   titleEl.classList.add('nav__title');
   titleEl.innerText = title;
   navEl.appendChild(titleEl)
-  
+
   // Add image
   const mainImage = el.querySelector('.element-image.element--immersive') || el.querySelector('.element-image.element--showcase');
   if (mainImage) {

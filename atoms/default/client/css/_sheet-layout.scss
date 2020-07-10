@@ -9,77 +9,45 @@ $sheet-wide: 980px;
   .atf {
     &__wrapper {
       width: auto;
+      display: flex;
+      flex-direction: row;
+      // overflow-x: auto;
+      width: 100vw;
+    }
+    &__sheet__outer {
+      width: 100vw;
+      height: 100vh;
+      flex-basis: 100vw;
+      flex-grow: 0;
+      flex-shrink: 0;
+
       overflow: hidden;
-      position: relative;
+      [data-scroll='mid'] & {
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
+
+      // this is the strategy to 'peek' sheets
+      &[data-index='1'] {
+        pointer-events: none;
+        transform: translateX(calc(-50vw + 400px));
+        @include mq(leftCol) {
+          transform: translateX(calc(-50vw + 480px));
+        }
+      }
+
     }
     &__sheet {
       background-color: #fff;
-      margin: 40px auto;
+      margin: 40px auto 50vh;
       position: relative;
-      overflow: hidden;
-      min-height: 100vh;
-      display: none;
       border: 1px solid #dcdcdc;
       width: $sheet-desktop;
-      margin-bottom: calc(100vh - 270px);
 
       @include mq(leftCol) {
         width: $sheet-leftCol;
       }
 
-      transition: transform ease-out 1s;
-
-      &[data-index='-2'],
-      &[data-index='-1'],
-      &[data-index='0'],
-      &[data-index='1'],
-      &[data-index='2'] {
-        display: block;
-      }
-
-      &[data-index='-2'] {
-        left: -100vw;
-      }
-
-      &[data-index='-1'] {
-        left: (-$sheet-desktop);
-        @include mq(leftCol) {
-          left: (-$sheet-leftCol);
-        }
-        @include mq(wide) {
-          left: (-$sheet-wide + 40px);
-        }
-
-      }
-
-      &[data-index='-1'],
-      &[data-index='1'] {
-        cursor: pointer;
-      }
-
-      &[data-index='1'] {
-        left: calc(100vw - 40px);
-        @include mq(wide) {
-          left: calc(100vw - 80px);
-        }
-      }
-
-      &[data-index='2'] {
-        left: 100vw;
-      }
-
-      &[data-index='-2'],
-      &[data-index='-1'],
-      &[data-index='1'],
-      &[data-index='2'] {
-        position: absolute;
-        top: 0;
-      }
-
-      [data-scroll='mid'] &[data-index='-1'],
-      [data-scroll='mid'] &[data-index='1'] {
-        position: fixed;
-      }
 
     }
   }
