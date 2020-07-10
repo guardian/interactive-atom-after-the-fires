@@ -1,0 +1,22 @@
+.sheet__peek-nav {
+  &__next,
+  &__prev {
+    position: absolute;
+    width: 30px;
+    cursor: pointer;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+  }
+  &__next {
+    right: 0;
+  }
+  &__prev {
+    left: 0;
+  }
+
+  .is-next &,
+  .is-prev & {
+    display: none;
+  }
+}

@@ -33,6 +33,7 @@ $sheet-wide: 980px;
       &.is-next,
       &.is-prev {
         pointer-events: none;
+        z-index: -10;
       }
       &.is-prev {
         transform: translateX(calc(50vw - 400px));

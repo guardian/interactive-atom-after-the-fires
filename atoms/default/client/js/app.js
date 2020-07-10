@@ -11,7 +11,7 @@ function interactiveSecondary() {
       clearInterval(int);
 
       setScrollStatus();
-      addSheetNav()
+      addNav()
     }
   }, 200)
 }
@@ -35,6 +35,25 @@ function setScrollStatus() {
 // --------------------------------
 // Add secondary sheet nav elements
 // --------------------------------
+function addNav() {
+  addSheetNav();
+  addPeekNav();
+}
+
+function addPeekNav() {
+  document.querySelectorAll('.sheet__outer').forEach((sheet) => {
+    let prevPeek = sheet.querySelector('.sheet__peek-nav__prev');
+    let nextPeek = sheet.querySelector('.sheet__peek-nav__next');
+
+    prevPeek.addEventListener('click', () => {
+      sheetStep(-1);
+    })
+    nextPeek.addEventListener('click', () => {
+      sheetStep(1);
+    })
+  })
+}
+
 function addSheetNav() {
 
   const sheetAll = document.querySelectorAll('.sheet__outer');

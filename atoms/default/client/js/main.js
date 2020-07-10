@@ -56,6 +56,11 @@ function newArticleSheet(interactiveBase) {
   let sheetInner = document.createElement('div');
   sheetInner.classList.add('sheet__inner', 'atf__sheet__inner');
 
+  let peekNav = document.createElement('div');
+  peekNav.classList.add('sheet__peek-nav');
+  peekNav.innerHTML = `<div class='sheet__peek-nav__prev'></div><div class='sheet__peek-nav__next'></div>`;
+  sheetOuter.appendChild(peekNav);
+
   sheetOuter.appendChild(sheet);
   sheet.appendChild(sheetInner);
   interactiveBase.appendChild(sheetOuter);
