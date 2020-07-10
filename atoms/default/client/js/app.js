@@ -51,6 +51,7 @@ function addSheetNav() {
       navWrapper.appendChild(prevEl);
       prevEl.addEventListener('click', (e) => {
         // navigate to previous here
+        sheetStep(-1);
       })
 
     }
@@ -59,6 +60,7 @@ function addSheetNav() {
       navWrapper.appendChild(nextEl);
       nextEl.addEventListener('click', (e) => {
         // navigate to next here
+        sheetStep(1);
       })
     }
 
@@ -96,23 +98,26 @@ function createNavEl(el) {
 // ----------
 // Navigation
 // ----------
+function sheetStep(direction=1) {
+  const wrapperEl = document.querySelector('.atf__wrapper');
+  const scrollX = wrapperEl.scrollLeft;
+  const scrollTarget = scrollX + (window.innerWidth * direction);
+  scrollTo(wrapperEl, scrollTarget);
+}
 
-console.log('hi from app.js')
-
-function scrollTo(to) {
+function scrollTo(element, to) {
   let duration = 600;
-  const element = document.scrollingElement;
-  const start = (element && element.scrollTop) || window.pageYOffset,
+  const start = (element && element.scrollLeft) || 0,
     change = to - start,
     increment = 20;
   let currentTime = 0;
 
-  duration = Math.max(240, (Math.sqrt(Math.abs(change)) * 4));
+  duration = Math.max(600, (Math.sqrt(Math.abs(change)) * 4));
 
   const animateScroll = function () {
     currentTime += increment;
     const val = Math.easeInOutQuad(currentTime, start, change, duration);
-    window.scrollTo(0, val);
+    element.scrollTo(val, 0);
     if (currentTime < duration) {
       window.setTimeout(animateScroll, increment);
     }

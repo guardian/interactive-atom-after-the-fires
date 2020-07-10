@@ -28,13 +28,13 @@ $sheet-wide: 980px;
       }
 
       // this is the strategy to 'peek' sheets
-      &[data-index='1'] {
-        pointer-events: none;
-        transform: translateX(calc(-50vw + 400px));
-        @include mq(leftCol) {
-          transform: translateX(calc(-50vw + 480px));
-        }
-      }
+      // &[data-index='1'] {
+      //   pointer-events: none;
+      //   transform: translateX(calc(-50vw + 400px));
+      //   @include mq(leftCol) {
+      //     transform: translateX(calc(-50vw + 480px));
+      //   }
+      // }
 
     }
     &__sheet {

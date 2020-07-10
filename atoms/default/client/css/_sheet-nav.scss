@@ -38,6 +38,13 @@
     margin-bottom: -6px;
     position: relative;
     transition: width ease-in-out 2s;
+    cursor: pointer;
+    &:hover {
+      .nav__title:before,
+      .nav__title:after {
+        transform: translateY(-50%) scale(1.1);
+      }
+    }
 
 
     &.nav__prev {
@@ -98,6 +105,7 @@
       vertical-align: middle;
       background-repeat: no-repeat;
       background-position: 11px 11px;
+      transition: transform 160ms ease-in-out;
     }
     &:before {
       background-color: #c70000;
