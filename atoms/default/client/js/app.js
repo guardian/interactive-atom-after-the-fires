@@ -99,10 +99,38 @@ function createNavEl(el) {
 // Navigation
 // ----------
 function sheetStep(direction=1) {
+  updateNextPrevPeek(direction);
+
   const wrapperEl = document.querySelector('.atf__wrapper');
   const scrollX = wrapperEl.scrollLeft;
   const scrollTarget = scrollX + (window.innerWidth * direction);
   scrollTo(wrapperEl, scrollTarget);
+}
+
+
+function updateNextPrevPeek(direction=1) {
+  const wrapperEl = document.querySelector('.atf__wrapper');
+  const currentIndex = parseInt(wrapperEl.dataset.currentSheet);
+  const newIndex = currentIndex + direction;
+
+  wrapperEl.dataset.currentSheet = newIndex;
+  movePrevNextClass(wrapperEl, (newIndex - 1), 'is-prev');
+  movePrevNextClass(wrapperEl, (newIndex + 1), 'is-next');
+
+}
+
+function movePrevNextClass(wrapper, index, className) {
+
+  const sheetEl = wrapper.querySelector(`[data-index='${index}']`);
+  const oldSheetEl = wrapper.querySelector(`.${className}`);
+
+  if (oldSheetEl && oldSheetEl != sheetEl) {
+    oldSheetEl.classList.remove(className);
+  }
+  if (sheetEl) {
+    sheetEl.classList.add(className);
+  }
+
 }
 
 function scrollTo(element, to) {
@@ -112,7 +140,7 @@ function scrollTo(element, to) {
     increment = 20;
   let currentTime = 0;
 
-  duration = Math.max(600, (Math.sqrt(Math.abs(change)) * 4));
+  // duration = Math.max(600, (Math.sqrt(Math.abs(change)) * 4));
 
   const animateScroll = function () {
     currentTime += increment;
