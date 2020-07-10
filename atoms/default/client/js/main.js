@@ -1,6 +1,3 @@
-// var el = document.createElement('script');
-// el.src = '<%= atomPath %>/app.js';
-// document.body.appendChild(el);
 
 startInteractive();
 
@@ -11,26 +8,14 @@ function startInteractive() {
     if (keyEl) {
       clearInterval(int);
       shapeDom();
-      fixedSideSheetsOnScroll();
-      addSheetNav();
     }
   }, 10)
 }
 
 
-function fixedSideSheetsOnScroll() {
-  const atfWrapper = document.querySelector('.atf__wrapper');
-  window.addEventListener('scroll', () => {
-    const top = atfWrapper.getBoundingClientRect().top;
-    if (top > 0) {
-      document.body.dataset.scroll = 'top';
-    } else {
-      document.body.dataset.scroll = 'mid';
-    }
-  });
-}
-
-// not checked
+// --------------------------------
+// Restructure dom for this article
+// --------------------------------
 function shapeDom() {
   const interactiveBase = document.querySelector('.atf__wrapper'),
     interactiveRoot = interactiveBase.parentElement.parentElement,
@@ -47,6 +32,11 @@ function shapeDom() {
       interactiveBase.querySelector('.sheet__outer:last-child .sheet__inner').appendChild(el);
     }
   });
+
+  var el = document.createElement('script');
+  el.src = '<%= atomPath %>/app.js';
+  interactiveRoot.appendChild(el);
+
 
   // Create meta area
   const metaEl = document.querySelector('.meta-source');
@@ -81,59 +71,4 @@ function newArticleSheet(interactiveBase) {
   sheetOuter.dataset.index = i;
 }
 
-function addSheetNav() {
 
-  const sheetAll = document.querySelectorAll('.sheet__outer');
-  sheetAll.forEach((sheet) => {
-
-    let navWrapper = document.createElement('div');
-    navWrapper.classList.add('nav__wrapper');
-
-    const prevEl = createNavEl(sheet.previousElementSibling);
-    const nextEl = createNavEl(sheet.nextElementSibling);
-
-    if (prevEl) {
-      prevEl.classList.add('nav__prev');
-      navWrapper.appendChild(prevEl);
-      prevEl.addEventListener('click', (e) => {
-        // navigate to previous here
-      })
-
-    }
-    if (nextEl) {
-      nextEl.classList.add('nav__next');
-      navWrapper.appendChild(nextEl);
-      nextEl.addEventListener('click', (e) => {
-        // navigate to next here
-      })
-    }
-
-    sheet.querySelector('.sheet__inner').appendChild(navWrapper);
-  });
-
-}
-
-function createNavEl(el) {
-  if (!el) {
-    return false;
-  }
-
-  let navEl = document.createElement('div');
-  navEl.classList.add('nav__el');
-
-  // Add title
-  const title = el.querySelector('h2').innerText;
-  let titleEl = document.createElement('div');
-  titleEl.classList.add('nav__title');
-  titleEl.innerText = title;
-  navEl.appendChild(titleEl)
-
-  // Add image
-  const mainImage = el.querySelector('.element-image.element--immersive') || el.querySelector('.element-image.element--showcase');
-  if (mainImage) {
-    navEl.appendChild(mainImage.cloneNode(true));
-  }
-
-  return navEl;
-
-}

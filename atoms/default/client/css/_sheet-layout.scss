@@ -11,7 +11,7 @@ $sheet-wide: 980px;
       width: auto;
       display: flex;
       flex-direction: row;
-      // overflow-x: auto;
+      overflow: hidden;
       width: 100vw;
     }
     &__sheet__outer {
