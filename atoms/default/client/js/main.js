@@ -84,10 +84,8 @@ function newArticleSheet(interactiveBase) {
 function processEmbed(el) {
   if (el.hasAttribute('data-canonical-url')) {
     const embedUrl = el.dataset.canonicalUrl;
-    console.log(embedUrl);
     let embedFrame = document.createElement('iframe');
     embedFrame.src = embedUrl;
-    console.log(embedFrame);
     el.appendChild(embedFrame);
   }
 }
