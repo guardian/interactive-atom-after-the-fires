@@ -10,7 +10,7 @@ function interactiveSecondary() {
     if (keyEl) {
       clearInterval(int);
 
-      setScrollStatus();
+      unlockScroll();
       addNav()
     }
   }, 200)
@@ -20,16 +20,21 @@ function interactiveSecondary() {
 // --------------------------------
 // Unlock .sheet_outer scroll at right moment
 // --------------------------------
-function setScrollStatus() {
+function unlockScroll() {
   const atfWrapper = document.querySelector('.atf__wrapper');
+  setScrollStatus(atfWrapper);
   window.addEventListener('scroll', () => {
-    const top = atfWrapper.getBoundingClientRect().top;
-    if (top > 0) {
-      document.body.dataset.scroll = 'top';
-    } else {
-      document.body.dataset.scroll = 'mid';
-    }
+    setScrollStatus(atfWrapper);
   });
+}
+
+function setScrollStatus(atfWrapper) {
+  const top = atfWrapper.getBoundingClientRect().top;
+  if (top > 0) {
+    document.body.dataset.scroll = 'top';
+  } else {
+    document.body.dataset.scroll = 'mid';
+  }
 }
 
 
@@ -48,9 +53,11 @@ function addPeekNav() {
 
     prevPeek.addEventListener('click', () => {
       sheetStep(-1);
+      resetSheetScroll(sheet);
     })
     nextPeek.addEventListener('click', () => {
       sheetStep(1);
+      resetSheetScroll(sheet);
     })
   })
 }
@@ -72,6 +79,7 @@ function addSheetNav() {
       prevEl.addEventListener('click', (e) => {
         // navigate to previous here
         sheetStep(-1);
+        resetSheetScroll(sheet);
       })
 
     }
@@ -81,6 +89,7 @@ function addSheetNav() {
       nextEl.addEventListener('click', (e) => {
         // navigate to next here
         sheetStep(1);
+        resetSheetScroll(sheet);
       })
     }
 
@@ -124,7 +133,7 @@ function sheetStep(direction = 1) {
   const wrapperEl = document.querySelector('.atf__wrapper');
   const scrollX = wrapperEl.scrollLeft;
   const scrollTarget = scrollX + (window.innerWidth * direction);
-  scrollTo(wrapperEl, scrollTarget);
+  smoothScroll(wrapperEl, scrollTarget);
 }
 
 
@@ -153,40 +162,38 @@ function movePrevNextClass(wrapper, index, className) {
 
 }
 
-function scrollTo(element, to) {
-  let duration = 600;
-  const start = (element && element.scrollLeft) || 0,
-    change = to - start,
+function smoothScroll(element, to, axis = 'horizontal', duration = 600, delay = 0) {
+  let start = 0;
+  if (axis == 'horizontal') {
+    start = (element && element.scrollLeft) || 0;
+  } else {
+    start = (element && element.scrollTop) || 0;
+  }
+  const change = to - start,
     increment = 20;
   let currentTime = 0;
 
   const animateScroll = function () {
     currentTime += increment;
     const val = Math.easeInOutQuad(currentTime, start, change, duration);
-    element.scrollTo(val, 0);
+    if (axis == 'horizontal') {
+      element.scrollTo(val, 0);
+    } else {
+      element.scrollTo(0, val);
+    }
     if (currentTime < duration) {
       window.setTimeout(animateScroll, increment);
     }
   };
-  animateScroll();
+  setTimeout(function () {
+    animateScroll();
+  }, delay)
+
 }
 
-function resetSheetScroll(sheet) {
-  let duration = 600;
-  const start = (element && element.scrollLeft) || 0,
-    change = to - start,
-    increment = 20;
-  let currentTime = 0;
 
-  const animateScroll = function () {
-    currentTime += increment;
-    const val = Math.easeInOutQuad(currentTime, start, change, duration);
-    element.scrollTo(val, 0);
-    if (currentTime < duration) {
-      window.setTimeout(animateScroll, increment);
-    }
-  };
-  animateScroll();
+function resetSheetScroll(sheet) {
+  smoothScroll(sheet, 0, 'vertical', 900, 0);
 }
 
 Math.easeInOutQuad = function (t, b, c, d) {
