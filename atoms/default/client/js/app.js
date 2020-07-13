@@ -193,7 +193,7 @@ function smoothScroll(element, to, axis = 'horizontal', duration = 600, delay = 
 
 
 function resetSheetScroll(sheet) {
-  smoothScroll(sheet, 0, 'vertical', 900, 0);
+  smoothScroll(sheet, 0, 'vertical', 800, 400);
 }
 
 Math.easeInOutQuad = function (t, b, c, d) {
