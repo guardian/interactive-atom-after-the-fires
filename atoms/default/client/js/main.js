@@ -29,6 +29,7 @@ function shapeDom() {
       if (el.tagName == 'H2' || el === articleChildren[0]) {
         newArticleSheet(interactiveBase);
       }
+      processEmbed(el);
       interactiveBase.querySelector('.sheet__outer:last-child .sheet__inner').appendChild(el);
     }
   });
@@ -73,10 +74,20 @@ function newArticleSheet(interactiveBase) {
     i = parseInt(prevSheet.dataset.index) + 1;
   }
 
-  if (i==1) {
+  if (i == 1) {
     sheetOuter.classList.add('is-next')
   }
   sheetOuter.dataset.index = i;
 }
 
 
+function processEmbed(el) {
+  if (el.hasAttribute('data-canonical-url')) {
+    const embedUrl = el.dataset.canonicalUrl;
+    console.log(embedUrl);
+    let embedFrame = document.createElement('iframe');
+    embedFrame.src = embedUrl;
+    console.log(embedFrame);
+    el.appendChild(embedFrame);
+  }
+}
