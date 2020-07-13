@@ -1,0 +1,59 @@
+.element-interactive {
+  height: 0;
+  padding-bottom: 87.5%;
+  &.element--supporting {
+    @include mq(tablet) {
+      padding-bottom: 263px;
+    }
+    @include mq(tablet) {
+      padding-bottom: 333px;
+    }
+    @include mq(leftCol) {
+      padding-bottom: 280px;
+    }
+  }
+  position: relative;
+  iframe {
+    border: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+  }
+}
+
+figure.element.element--supporting {
+  @include mq(tablet) {
+    float: right;
+    margin-right: -80px;
+    margin-left: 20px;
+  }
+  @include mq(desktop) {
+    margin-right: -200px;
+  }
+  @include mq(leftCol) {
+    margin-right: -360px;
+    width: 320px;
+    margin-top: 24px;
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 1px;
+      width: 21px;
+      border-top: 1px solid #dcdcdc;
+    }
+    &:after {
+      right: -20px;
+      border-bottom: 1px solid #dcdcdc;
+    }
+    &:before {
+      left: -20px;
+    }
+  }
+}

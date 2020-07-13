@@ -16,6 +16,7 @@ function interactiveSecondary() {
   }, 200)
 }
 
+
 // --------------------------------
 // Unlock .sheet_outer scroll at right moment
 // --------------------------------
@@ -117,7 +118,7 @@ function createNavEl(el) {
 // ----------
 // Navigation
 // ----------
-function sheetStep(direction=1) {
+function sheetStep(direction = 1) {
   updateNextPrevPeek(direction);
 
   const wrapperEl = document.querySelector('.atf__wrapper');
@@ -127,7 +128,7 @@ function sheetStep(direction=1) {
 }
 
 
-function updateNextPrevPeek(direction=1) {
+function updateNextPrevPeek(direction = 1) {
   const wrapperEl = document.querySelector('.atf__wrapper');
   const currentIndex = parseInt(wrapperEl.dataset.currentSheet);
   const newIndex = currentIndex + direction;
@@ -159,8 +160,6 @@ function scrollTo(element, to) {
     increment = 20;
   let currentTime = 0;
 
-  // duration = Math.max(600, (Math.sqrt(Math.abs(change)) * 4));
-
   const animateScroll = function () {
     currentTime += increment;
     const val = Math.easeInOutQuad(currentTime, start, change, duration);
@@ -172,6 +171,23 @@ function scrollTo(element, to) {
   animateScroll();
 }
 
+function resetSheetScroll(sheet) {
+  let duration = 600;
+  const start = (element && element.scrollLeft) || 0,
+    change = to - start,
+    increment = 20;
+  let currentTime = 0;
+
+  const animateScroll = function () {
+    currentTime += increment;
+    const val = Math.easeInOutQuad(currentTime, start, change, duration);
+    element.scrollTo(val, 0);
+    if (currentTime < duration) {
+      window.setTimeout(animateScroll, increment);
+    }
+  };
+  animateScroll();
+}
 
 Math.easeInOutQuad = function (t, b, c, d) {
   t /= d / 2;
