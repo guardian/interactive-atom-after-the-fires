@@ -57,6 +57,7 @@ function setScrollStatus(atfWrapper) {
 function addNav() {
   addSheetNav();
   addPeekNav();
+  addAutoNext();
 }
 
 function addPeekNav() {
@@ -136,6 +137,26 @@ function createNavEl(el) {
 
 }
 
+function addAutoNext() {
+  document.querySelectorAll('.sheet__outer').forEach((sheet) => {
+    const sheetInner = sheet.querySelector('.sheet__inner');
+    sheet.addEventListener('scroll', throttle((e) => {
+      const height = sheet.scrollHeight - window.innerHeight;
+      const scroll = sheet.scrollTop;
+      const lastPageStart = height - window.innerHeight;
+      const pastLastPage = (scroll-lastPageStart);
+      const lastPageRatio = Math.max(0,pastLastPage/window.innerHeight);
+
+      const translateMax = 50;
+      const translateNow = lastPageRatio*translateNow;
+
+
+      console.log(lastPageRatio, sheetInner);
+
+    }), 1000);
+  })
+}
+
 
 // ----------
 // Navigation
@@ -210,9 +231,27 @@ function resetSheetScroll(sheet) {
   smoothScroll(sheet, 0, 'vertical', 800, 400);
 }
 
+
+// ~~~~~~~~~~~~~~~~
+// Helper functions
+// ~~~~~~~~~~~~~~~~
+
 Math.easeInOutQuad = function (t, b, c, d) {
   t /= d / 2;
   if (t < 1) return c / 2 * t * t + b;
   t--;
   return -c / 2 * (t * (t - 2) - 1) + b;
 };
+
+const throttle = (func, limit) => {
+  let inThrottle
+  return function () {
+    const args = arguments
+    const context = this
+    if (!inThrottle) {
+      func.apply(context, args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
+  }
+}
