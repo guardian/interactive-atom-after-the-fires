@@ -74,7 +74,9 @@ function newArticleSheet(interactiveBase) {
     i = parseInt(prevSheet.dataset.index) + 1;
   }
 
-  if (i == 1) {
+  if (i == 0) {
+    sheetOuter.classList.add('is-current')
+  } else if (i == 1) {
     sheetOuter.classList.add('is-next')
   }
   sheetOuter.dataset.index = i;

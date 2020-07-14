@@ -5,6 +5,9 @@ $sheet-wide: 980px;
 @include mq(desktop) {
   body {
     background-color: #f6f6f6;
+    &[data-scroll='low'] {
+      overflow-x: hidden;
+    }
   }
   .atf {
     &__wrapper {
@@ -24,7 +27,8 @@ $sheet-wide: 980px;
       transition: transform 600ms ease-in-out;
 
       overflow: hidden;
-      [data-scroll='mid'] & {
+      [data-scroll='mid'] &,
+      [data-scroll='low'] & {
         overflow-x: hidden;
         overflow-y: scroll;
       }

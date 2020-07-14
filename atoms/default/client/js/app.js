@@ -26,14 +26,27 @@ function unlockScroll() {
   window.addEventListener('scroll', () => {
     setScrollStatus(atfWrapper);
   });
+  document.querySelectorAll('.sheet__outer').forEach((s) => {
+    s.addEventListener('scroll', () => {
+      setScrollStatus(atfWrapper);
+    });
+  })
 }
 
 function setScrollStatus(atfWrapper) {
   const top = atfWrapper.getBoundingClientRect().top;
   if (top > 0) {
+    console.log('top', top);
     document.body.dataset.scroll = 'top';
   } else {
-    document.body.dataset.scroll = 'mid';
+    const sheet = atfWrapper.querySelector('.sheet__outer.is-current');
+    if (sheet.scrollTop == 0) {
+      console.log(sheet, 'mid', sheet.scrollTop);
+      document.body.dataset.scroll = 'mid';
+    } else {
+      console.log(sheet, 'low', sheet.scrollTop);
+      document.body.dataset.scroll = 'low';
+    }
   }
 }
 
@@ -145,6 +158,7 @@ function updateNextPrevPeek(direction = 1) {
   wrapperEl.dataset.currentSheet = newIndex;
   movePrevNextClass(wrapperEl, (newIndex - 1), 'is-prev');
   movePrevNextClass(wrapperEl, (newIndex + 1), 'is-next');
+  movePrevNextClass(wrapperEl, (newIndex), 'is-current');
 
 }
 
