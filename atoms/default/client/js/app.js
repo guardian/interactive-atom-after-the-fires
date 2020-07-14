@@ -36,15 +36,12 @@ function unlockScroll() {
 function setScrollStatus(atfWrapper) {
   const top = atfWrapper.getBoundingClientRect().top;
   if (top > 0) {
-    console.log('top', top);
     document.body.dataset.scroll = 'top';
   } else {
     const sheet = atfWrapper.querySelector('.sheet__outer.is-current');
     if (sheet.scrollTop == 0) {
-      console.log(sheet, 'mid', sheet.scrollTop);
       document.body.dataset.scroll = 'mid';
     } else {
-      console.log(sheet, 'low', sheet.scrollTop);
       document.body.dataset.scroll = 'low';
     }
   }
@@ -144,11 +141,11 @@ function addAutoNext() {
       const height = sheet.scrollHeight - window.innerHeight;
       const scroll = sheet.scrollTop;
       const lastPageStart = height - window.innerHeight;
-      const pastLastPage = (scroll-lastPageStart);
-      const lastPageRatio = Math.max(0,pastLastPage/window.innerHeight);
+      const pastLastPage = (scroll - lastPageStart);
+      const lastPageRatio = Math.max(0, pastLastPage / window.innerHeight);
 
       const translateMax = 50;
-      const translateNow = lastPageRatio*translateNow;
+      const translateNow = lastPageRatio * translateNow;
 
 
       console.log(lastPageRatio, sheetInner);
@@ -198,6 +195,8 @@ function movePrevNextClass(wrapper, index, className) {
 }
 
 function smoothScroll(element, to, axis = 'horizontal', duration = 600, delay = 0) {
+  element.classList.add('smooth-scrolling');
+
   let start = 0;
   if (axis == 'horizontal') {
     start = (element && element.scrollLeft) || 0;
@@ -207,6 +206,7 @@ function smoothScroll(element, to, axis = 'horizontal', duration = 600, delay = 
   const change = to - start,
     increment = 20;
   let currentTime = 0;
+
 
   const animateScroll = function () {
     currentTime += increment;
@@ -218,6 +218,8 @@ function smoothScroll(element, to, axis = 'horizontal', duration = 600, delay = 
     }
     if (currentTime < duration) {
       window.setTimeout(animateScroll, increment);
+    } else {
+      element.classList.remove('smooth-scrolling');
     }
   };
   setTimeout(function () {
