@@ -39,7 +39,7 @@ function setScrollStatus(atfWrapper) {
     document.body.dataset.scroll = 'top';
   } else {
     const sheet = atfWrapper.querySelector('.sheet__outer.is-current');
-    if (sheet.scrollTop == 0) {
+    if (sheet && sheet.scrollTop == 0) {
       document.body.dataset.scroll = 'mid';
     } else {
       document.body.dataset.scroll = 'low';
