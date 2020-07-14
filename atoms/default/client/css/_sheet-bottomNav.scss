@@ -134,7 +134,10 @@
           width: 1000px;
         }
         &:first-child {
-          width: 1000px;
+          width: 850px;
+          @include mq(leftCol) {
+            width: 1000px;
+          }
         }
       }
 
