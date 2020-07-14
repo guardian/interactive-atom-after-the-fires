@@ -46,6 +46,9 @@ function shapeDom() {
   if (metaEl && firstSheet && firstStandy) {
     firstSheet.insertBefore(metaEl, firstStandy.nextElementSibling);
   }
+
+  // Show page
+  document.body.classList.add('ready');
 }
 
 function newArticleSheet(interactiveBase) {
