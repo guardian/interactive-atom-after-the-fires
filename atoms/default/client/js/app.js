@@ -144,16 +144,31 @@ function addAutoNext() {
       const pastLastPage = (scroll - lastPageStart);
       const lastPageRatio = Math.max(0, pastLastPage / window.innerHeight);
 
-      const translateMax = 50;
-      const translateNow = lastPageRatio * translateNow;
-
-
-      console.log(lastPageRatio, sheetInner);
+      if (lastPageRatio > 0.9) {
+        if (sheet.dataset.autoNav !== 'trigger') {
+          sheet.dataset.autoNav = 'trigger';
+          triggerAutoNav(sheet);
+        }
+      } else if (lastPageRatio > .7) {
+        sheet.dataset.autoNav = 'nearly';
+      } else if (lastPageRatio > 0.2) {
+        sheet.dataset.autoNav = 'start';
+      } else {
+        sheet.dataset.autoNav = 'base';
+      }
 
     }), 1000);
   })
 }
 
+function triggerAutoNav(sheet) {
+  if (sheet.nextElementSibling) {
+    sheetStep(1);
+    resetSheetScroll(sheet);
+  } else {
+    console.log('not triggering cause last child')
+  }
+}
 
 // ----------
 // Navigation

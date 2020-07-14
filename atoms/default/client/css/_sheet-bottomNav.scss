@@ -52,6 +52,7 @@
       padding-right: 10px;
       text-align: right;
       border-right: 1px solid #dcdcdc;
+      overflow: hidden;
       .nav__title {
         padding-right: 56px;
         right: 20px;
@@ -86,8 +87,60 @@
       // First sheet
       &:first-child {
         width: 640px;
+      }
     }
+
+    [data-auto-nav='start'] & {
+      transition: width ease-in-out 1s;
+      &.nav__prev {
+        width: 320px;
+        @include mq(leftCol) {
+          width: 320px;
+        }
+
+        &:last-child {
+          width: 700px;
+        }
+
+      }
+      &.nav__next {
+        width: 520px;
+        @include mq(leftCol) {
+          width: 680px;
+        }
+        &:first-child {
+          width: 700px;
+        }
+      }
     }
+
+    [data-auto-nav='nearly'] &,
+    [data-auto-nav='trigger'] & {
+      transition: width ease-in-out 1s;
+      &.nav__prev {
+        width: 0px;
+        @include mq(leftCol) {
+          width: 0px;
+        }
+
+        &:last-child {
+          width: 700px;
+        }
+
+      }
+      &.nav__next {
+        width: 840px;
+        @include mq(leftCol) {
+          width: 1000px;
+        }
+        &:first-child {
+          width: 1000px;
+        }
+      }
+
+
+    }
+
 
   }
   &__title {
