@@ -55,6 +55,7 @@ function addNav() {
   addSheetNav();
   addPeekNav();
   addAutoNext();
+  addPeekHover();
 }
 
 function addPeekNav() {
@@ -197,6 +198,27 @@ function updateNextPrevPeek(direction = 1) {
   movePrevNextClass(wrapperEl, (newIndex), 'is-current');
 
 }
+
+function addPeekHover() {
+  document.querySelectorAll('.sheet__peek-nav__prev').forEach((el) => {
+    peekHover(el, 'is-prev');
+  })
+  document.querySelectorAll('.sheet__peek-nav__next').forEach((el) => {
+    peekHover(el, 'is-next');
+  })
+}
+
+function peekHover(el, className) {
+  el.addEventListener('mouseover', () => {
+    const peekee = document.querySelector(`.${className}`);
+    peekee.classList.add('peek-hover');
+  });
+  el.addEventListener('mouseleave', () => {
+    const peekee = document.querySelector(`.${className}`);
+    peekee.classList.remove('peek-hover');
+  });
+}
+
 
 function movePrevNextClass(wrapper, index, className) {
 

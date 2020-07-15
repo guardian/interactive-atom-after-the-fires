@@ -67,6 +67,7 @@ $sheet-wide: 980px;
       position: relative;
       border: 1px solid #dcdcdc;
       width: $sheet-desktop;
+      transition: transform 300ms ease-in-out;
 
       @include mq(leftCol) {
         width: $sheet-leftCol;

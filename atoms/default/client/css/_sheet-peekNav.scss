@@ -2,11 +2,14 @@
   &__next,
   &__prev {
     position: absolute;
-    width: 30px;
+    width: 45px;
     cursor: pointer;
     top: -40px;
     bottom: -50vh;
     z-index: 5;
+    @include mq(wide) {
+      width: 80px;
+    }
   }
   &__next {
     right: calc(50% - 50vw);
@@ -23,5 +26,20 @@
   .sheet__outer:first-child &__prev,
   .sheet__outer:last-child &__next {
     display: none;
+  }
+}
+
+.sheet__outer.peek-hover:not(.is-current) {
+  &.is-next .sheet {
+    transform: translateX(-20px);
+    @include mq(wide) {
+      transform: translateX(-50px);
+    }
+  }
+  &.is-prev .sheet {
+    transform: translateX(20px);
+    @include mq(wide) {
+      transform: translateX(50px);
+    }
   }
 }
