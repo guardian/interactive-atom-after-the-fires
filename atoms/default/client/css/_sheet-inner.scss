@@ -1,4 +1,5 @@
 .atf .sheet {
+
   @include mq($until:tablet) {
     &:not(:first-child) {
       margin-top: 32px;
@@ -20,11 +21,14 @@
     font-size: 42px;
     line-height: 1.15;
     padding: 3px 8px 3px 10px;
-    margin-top: calc(60vw - 46px);
+    margin-top: calc(56.25vw - 42px);
     margin-left: -10px;
     margin-bottom: 12px;
+    @include mq(mobileLandscape) {
+      margin-top: calc(55vw - 58px);
+    }
     @include mq(tablet) {
-      margin-top: 392px;
+      margin-top: 362px;
       font-size: 50px;
       padding: 4px 16px 6px 19px;
       margin-left: -20px;
@@ -33,11 +37,11 @@
     }
     @include mq(desktop) {
       padding: 8px 16px 8px 20px;
-      margin-top: 446px;
+      margin-top: 416px;
       font-size: 62px;
     }
     @include mq(leftCol) {
-      margin-top: 534px;
+      margin-top: 498px;
       font-size: 70px;
     }
   }
@@ -221,12 +225,32 @@
 
   // Only each sheet's header image
   h2 + .element--showcase {
-    position: absolute;
-    top: -20px;
-    z-index: 10;
-    @include mq(tablet) {
-      top: -16px;
+    // Video-header
+    &.element-interactive {
+      // padding-bottom: 56.25%;
+      padding-bottom: 0;
+      height: 56.25vw;
+      width: 100vw;
+      @include mq(tablet) {
+        width: 740px;
+        padding-bottom: 0;
+        height: 416px;
+        top: 0;
+      }
+      @include mq(desktop) {
+        width: 860px;
+        height: 484px;
+      }
+      @include mq(leftCol) {
+        width: 1020px;
+        height: 574px;
+      }
     }
+
+    top: 0;
+    position: absolute;
+    z-index: 10;
+
     @include mq(desktop) {
       width: 860px;
     }
