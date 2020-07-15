@@ -63,14 +63,24 @@ function addPeekNav() {
     let nextPeek = sheet.querySelector('.sheet__peek-nav__next');
 
     prevPeek.addEventListener('click', () => {
-      sheetStep(-1);
-      resetSheetScroll(sheet);
+      initiateNav(sheet, -1);
     })
     nextPeek.addEventListener('click', () => {
-      sheetStep(1);
-      resetSheetScroll(sheet);
+      initiateNav(sheet, 1);
     })
   })
+}
+
+function initiateNav(sheet, direction) {
+  if (!document.body.classList.contains('will-navigate')) {
+    document.body.classList.add('will-navigate');
+    sheetStep(direction);
+    resetSheetScroll(sheet);
+  }
+}
+
+function registerNavEnd() {
+  document.body.classList.remove('will-navigate');
 }
 
 function addSheetNav() {
@@ -88,9 +98,7 @@ function addSheetNav() {
       prevEl.classList.add('nav__prev');
       navWrapper.appendChild(prevEl);
       prevEl.addEventListener('click', (e) => {
-        // navigate to previous here
-        sheetStep(-1);
-        resetSheetScroll(sheet);
+        initiateNav(sheet, -1);
       })
 
     }
@@ -98,9 +106,7 @@ function addSheetNav() {
       nextEl.classList.add('nav__next');
       navWrapper.appendChild(nextEl);
       nextEl.addEventListener('click', (e) => {
-        // navigate to next here
-        sheetStep(1);
-        resetSheetScroll(sheet);
+        initiateNav(sheet, 1);
       })
     }
 
@@ -163,10 +169,7 @@ function addAutoNext() {
 
 function triggerAutoNav(sheet) {
   if (sheet.nextElementSibling) {
-    sheetStep(1);
-    resetSheetScroll(sheet);
-  } else {
-    console.log('not triggering cause last child')
+    initiateNav(sheet, 1);
   }
 }
 
@@ -210,7 +213,6 @@ function movePrevNextClass(wrapper, index, className) {
 }
 
 function smoothScroll(element, to, axis = 'horizontal', duration = 600, delay = 0) {
-  element.classList.add('smooth-scrolling');
 
   let start = 0;
   if (axis == 'horizontal') {
@@ -234,7 +236,7 @@ function smoothScroll(element, to, axis = 'horizontal', duration = 600, delay = 
     if (currentTime < duration) {
       window.setTimeout(animateScroll, increment);
     } else {
-      element.classList.remove('smooth-scrolling');
+      registerNavEnd();
     }
   };
   setTimeout(function () {
