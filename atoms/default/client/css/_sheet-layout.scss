@@ -5,6 +5,8 @@ $sheet-wide: 980px;
 @include mq(desktop) {
   body {
     background-color: #f6f6f6;
+    .ios &,
+    .android &,
     &[data-scroll='low'] {
       overflow-x: hidden;
     }
@@ -27,6 +29,8 @@ $sheet-wide: 980px;
       transition: transform 600ms ease-in-out;
 
       overflow: hidden;
+      .ios &,
+      .android &,
       [data-scroll='mid'] &,
       [data-scroll='low'] & {
         overflow-x: hidden;

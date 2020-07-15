@@ -1,3 +1,7 @@
+figure.element {
+  margin: 0;
+}
+
 .element-interactive {
   height: 0;
   padding-bottom: 87.5%;
@@ -31,6 +35,8 @@ figure.element.element--supporting {
     float: right;
     margin-right: -80px;
     margin-left: 20px;
+
+    width: 300px;
   }
   @include mq(desktop) {
     margin-right: -200px;

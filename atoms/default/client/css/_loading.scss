@@ -1,0 +1,25 @@
+// Prevent unstyled flash
+body {
+  opacity: 0;
+  animation-name: loadFallback;
+  animation-duration: 10s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  &.ready {
+      animation: none;
+      transition: opacity 120px;
+      opacity: 1;
+  }
+}
+
+@keyframes loadFallback {
+  0% {
+      opacity: 0;
+  }
+  99% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}

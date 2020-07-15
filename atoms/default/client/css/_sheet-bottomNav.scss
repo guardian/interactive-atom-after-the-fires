@@ -39,6 +39,11 @@
     position: relative;
     transition: width ease-in-out 2s;
     cursor: pointer;
+
+    .element a {
+      pointer-events: none;
+    }
+
     &:hover {
       .nav__title:before,
       .nav__title:after {

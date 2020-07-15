@@ -35,11 +35,17 @@
     top: 6px;
   }
   .meta__contact-wrap {
+    .byline {
+      margin: 0 0 4px;
+    }
     .byline a,
     .meta__contact-method a {
       color: #c70000;
+      font-family: "Guardian Headline", "Guardian Egyptian Web", Georgia, serif;
+      font-weight: bold;
     }
     .meta__contact-method {
+      display: inline;
       margin-right: 8px;
       @include mq(leftCol) {
         display: inline-block;
@@ -62,9 +68,13 @@
       font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
       font-size: 14px;
       margin-top: 4px;
+      color: #767676;
+      border-bottom: 1px solid #dcdcdc;
+      padding-bottom: 8px;
     }
   }
   .meta__extras {
+    border-top: 0;
     .ios &,
     .android & {
       display: none;
@@ -72,6 +82,9 @@
     @include mq(tablet) {
       padding-left: 20px;
       margin-left: -20px;
+    }
+    .meta__social {
+      padding-top: 0;
     }
     .social__action .inline-icon {
       background-color: #fff;

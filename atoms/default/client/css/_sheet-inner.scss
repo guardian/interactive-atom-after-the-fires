@@ -44,6 +44,7 @@
 
   // Standfirsts
   blockquote:not(.quoted) {
+    margin: 0;
     p {
       font-family: "Guardian Headline Full","Guardian Headline","Guardian Egyptian Web",Georgia,serif;
       font-weight: bold;
@@ -135,7 +136,9 @@
   }
 
   .element--thumbnail,
-  .element--thumbnail.element-image  {
+  .element--thumbnail.element-image,
+  .element--supporting,
+  .element--supporting.element-image  {
     width: auto;
     float: none;
     margin-right: 0;
@@ -206,8 +209,10 @@
     line-height: 24px;
     color: #c70000;
     font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    padding-top: 4px;
     margin-bottom: 18px;
+    @include mq(tablet) {
+      padding-top: 0;
+    }
     strong {
       font-weight: inherit;
       color: #121212;
