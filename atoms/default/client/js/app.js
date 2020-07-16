@@ -281,7 +281,7 @@ function resetSheetScroll(sheet) {
 
 // Keyboard navigation
 function addKeyboardNav() {
-  console.log('keyboard nav')
+
   document.addEventListener('keydown', (e) => {
     e = e || window.event;
 
@@ -289,11 +289,11 @@ function addKeyboardNav() {
     if ((e.keyCode == '39') || (e.keyCode == '37')) {
       sheet = document.querySelector('.sheet__outer.is-current');
     }
-    if (e.keyCode == '37') {
+    if (e.keyCode == '37' && sheet.previousElementSibling) {
       initiateNav(sheet, -1);
       // left arrow
     }
-    else if (e.keyCode == '39') {
+    else if (e.keyCode == '39' && sheet.nextElementSibling) {
       initiateNav(sheet, 1);
       // right arrow
     }
