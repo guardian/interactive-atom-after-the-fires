@@ -312,7 +312,12 @@ function navSafetyCheck() {
     const sheet = wrapper.querySelector('.sheet__outer.is-current');
 
     const wrapperScroll = wrapper.scrollLeft;
-    const sheetPos = sheet.offsetLeft;
+    let sheetPos;
+    if (sheet) {
+      sheetPos = sheet.offsetLeft;
+    } else {
+      sheetPos = 0;
+    }
 
     if (!closeEnough(sheetPos, wrapperScroll)) {
       smoothScroll(wrapper, sheetPos);
