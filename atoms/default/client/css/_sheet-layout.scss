@@ -39,7 +39,9 @@ $sheet-wide: 980px;
 
       // this is the strategy to 'peek' sheets
       &.is-next,
+      &.smooth-scrolling,
       &.is-prev {
+        overflow: hidden;
         pointer-events: none;
         z-index: -10;
       }
@@ -54,10 +56,6 @@ $sheet-wide: 980px;
         @include mq(leftCol) {
           transform: translateX(calc(-50vw + 480px));
         }
-      }
-
-      &.smooth-scrolling {
-        overflow: hidden;
       }
 
     }
