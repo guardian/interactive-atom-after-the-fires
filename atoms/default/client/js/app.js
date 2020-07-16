@@ -273,6 +273,36 @@ function resetSheetScroll(sheet) {
 }
 
 
+// ------------------------
+// Navigation: safety check
+// ------------------------
+function navSafetyCheck() {
+  // don't do it mid navigation
+  if (!document.body.classList.contains('will-navigate')) {
+    const wrapper = document.querySelector('.atf__wrapper');
+    const sheet = wrapper.querySelector('.sheet__outer.is-current');
+
+    const wrapperScroll = wrapper.scrollLeft;
+    const sheetPos = sheet.offsetLeft;
+
+    if (!closeEnough(sheetPos, wrapperScroll)) {
+      console.log('not close enough! at', wrapperScroll, 'should be', sheetPos);
+      smoothScroll(wrapper, sheetPos);
+    }
+  }
+}
+
+function closeEnough(a, b) {
+  const delta = a - b;
+  return ((delta < 10) && (delta > -10));
+}
+
+setInterval(() => {
+  navSafetyCheck();
+}, 2000);
+
+
+
 // ~~~~~~~~~~~~~~~~
 // Helper functions
 // ~~~~~~~~~~~~~~~~

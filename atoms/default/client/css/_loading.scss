@@ -7,7 +7,7 @@ body {
   animation-iteration-count: 1;
   &.ready {
       animation: none;
-      transition: opacity 120px;
+      transition: opacity 120ms;
       opacity: 1;
   }
 }
