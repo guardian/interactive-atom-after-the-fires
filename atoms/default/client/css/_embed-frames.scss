@@ -10,14 +10,35 @@ figure.element-interactive {
     padding-bottom: 56.25%; //16x9 video
   }
   &.element--supporting {
-    @include mq(tablet) {
-      padding-bottom: 263px;
+    @include mq(400px) {
+      padding-bottom: 320px;
     }
     @include mq(tablet) {
       padding-bottom: 333px;
+      &.element {
+        margin-left: -20px;
+        width: 640px;
+      }
+    }
+    @include mq(desktop) {
+      padding-bottom: 226px;
+      &.element {
+        margin-top: 24px;
+        margin-left: 40px;
+        right: 10px;
+        float: right;
+        width: 270px;
+      }
     }
     @include mq(leftCol) {
       padding-bottom: 280px;
+      &.element {
+        margin-top: 24px;
+        margin-left: 40px;
+        right: 10px;
+        float: right;
+        width: 320px;
+      }
     }
   }
   position: relative;
@@ -41,16 +62,10 @@ figure.element.element--supporting {
     float: right;
     margin-right: -80px;
     margin-left: 20px;
-
     width: 300px;
   }
   @include mq(desktop) {
     margin-right: -200px;
-  }
-  @include mq(leftCol) {
-    margin-right: -360px;
-    width: 320px;
-    margin-top: 24px;
     &:after,
     &:before {
       content: '';
@@ -61,11 +76,24 @@ figure.element.element--supporting {
       border-top: 1px solid #dcdcdc;
     }
     &:after {
-      right: -20px;
+      right: -10px;
+    }
+    &:before {
+      display: none;
+    }
+  }
+  @include mq(leftCol) {
+    margin-right: -360px;
+    width: 320px;
+    margin-top: 24px;
+    &:after {
+      // right: -10px;
       border-bottom: 1px solid #dcdcdc;
     }
     &:before {
-      left: -20px;
+      display: block;
+      left: -10px;
+      border-bottom: 1px solid #dcdcdc;
     }
   }
 }

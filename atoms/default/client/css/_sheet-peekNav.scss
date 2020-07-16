@@ -1,4 +1,8 @@
 .sheet__peek-nav {
+  display: none;
+  @include mq(desktop) {
+    display: block;
+  }
   &__next,
   &__prev {
     position: absolute;

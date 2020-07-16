@@ -60,35 +60,42 @@
         font-size: 24px;
       }
     }
-    & + p,
-    & + [data-canonical-url] + p {
-      position: relative;
-      padding-top: 12px;
-      margin-top: 32px;
-      &:before {
-        position: absolute;
-        content: '';
-        top: 0;
-        background-color: #dcdcdc;
-        height: 1px;
-        left: -10px;
-        right: -10px;
+    @include mq(desktop) {
+      & + p,
+      & + [data-canonical-url] + p {
+        position: relative;
+        padding-top: 12px;
+        margin-top: 32px;
+        &:before {
+          position: absolute;
+          content: '';
+          top: 0;
+          background-color: #dcdcdc;
+          height: 1px;
+          left: -10px;
+          right: -10px;
 
-        @include mq(mobileLandscape) {
-          left: -20px;
-          right: auto;
-          width: 100vw;
-        }
-        @include mq(tablet) {
-          left: -20px;
-          right: 0;
-          width: auto;
-        }
-        @include mq(desktop) {
-          right: -20px;
+          @include mq(mobileLandscape) {
+            left: -20px;
+            right: auto;
+            width: 100vw;
+          }
+          @include mq(tablet) {
+            left: -20px;
+            right: 0;
+            width: auto;
+          }
+          @include mq(desktop) {
+            right: -20px;
+          }
         }
       }
     }
+  }
+
+  // Maps after standy
+  blockquote+.element--supporting {
+    // margin-top: 200px;
   }
 
   // Quotes
@@ -147,11 +154,13 @@
     float: none;
     margin-right: 0;
     @include mq(mobileLandscape) {
-      width: 280px;
-      max-width: 33vw;
-      margin-left: 20px;
-      float: right;
-      clear: right;
+      &:not(.element-interactive) {
+        width: 280px;
+        max-width: 33vw;
+        margin-left: 20px;
+        float: right;
+        clear: right;
+      }
     }
     @include mq(tablet) {
       max-width: none;

@@ -278,7 +278,8 @@ function resetSheetScroll(sheet) {
 // ------------------------
 function navSafetyCheck() {
   // don't do it mid navigation
-  if (!document.body.classList.contains('will-navigate')) {
+  if (shouldNavSafetyCheck()) {
+    console.log('nav safety check');
     const wrapper = document.querySelector('.atf__wrapper');
     const sheet = wrapper.querySelector('.sheet__outer.is-current');
 
@@ -290,6 +291,13 @@ function navSafetyCheck() {
       smoothScroll(wrapper, sheetPos);
     }
   }
+}
+
+function shouldNavSafetyCheck() {
+  return (
+    (window.innerWidth > 980) &&
+    !document.body.classList.contains('will-navigate')
+  )
 }
 
 function closeEnough(a, b) {
