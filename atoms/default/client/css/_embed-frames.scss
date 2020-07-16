@@ -40,6 +40,10 @@ figure.element-interactive {
         right: 10px;
         float: right;
         width: 270px;
+        .ios &,
+        .android & {
+          margin-top: 8px;
+        }
       }
     }
     @include mq(leftCol) {
