@@ -35,10 +35,13 @@ function unlockScroll() {
 
 function setScrollStatus(atfWrapper) {
   const top = atfWrapper.getBoundingClientRect().top;
+  const sheet = atfWrapper.querySelector('.sheet__outer.is-current');
   if (top > 0) {
     document.body.dataset.scroll = 'top';
+    if (sheet && sheet.scrollTop !== 0) {
+      resetSheetScroll(sheet);
+    }
   } else {
-    const sheet = atfWrapper.querySelector('.sheet__outer.is-current');
     if (sheet && sheet.scrollTop == 0) {
       document.body.dataset.scroll = 'mid';
     } else {
