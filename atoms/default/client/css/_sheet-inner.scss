@@ -158,6 +158,13 @@
         margin-left: 20px;
         float: right;
         clear: right;
+        figcaption {
+          padding-left: 0;
+        }
+        &:after,
+        &:before {
+          display: none;
+        }
       }
     }
     @include mq(tablet) {
@@ -173,8 +180,14 @@
       }
     }
     @include mq(leftCol) {
-      margin-right: -380px;
-      width: 340px;
+      &,
+      &:not(.element-interactive) {
+        margin-right: -380px;
+        width: 340px;
+        figcaption {
+          padding-left: 20px;
+        }
+      }
     }
   }
 
