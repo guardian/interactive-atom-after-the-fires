@@ -56,6 +56,7 @@ function addNav() {
   addPeekNav();
   addAutoNext();
   addPeekHover();
+  addKeyboardNav();
 }
 
 function addPeekNav() {
@@ -143,7 +144,6 @@ function createNavEl(el) {
 
 function addAutoNext() {
   document.querySelectorAll('.sheet__outer').forEach((sheet) => {
-    const sheetInner = sheet.querySelector('.sheet__inner');
     sheet.addEventListener('scroll', throttle((e) => {
       const height = sheet.scrollHeight - window.innerHeight;
       const scroll = sheet.scrollTop;
@@ -211,11 +211,15 @@ function addPeekHover() {
 function peekHover(el, className) {
   el.addEventListener('mouseover', () => {
     const peekee = document.querySelector(`.${className}`);
-    peekee.classList.add('peek-hover');
+    if (peekee) {
+      peekee.classList.add('peek-hover');
+    }
   });
   el.addEventListener('mouseleave', () => {
     const peekee = document.querySelector(`.${className}`);
-    peekee.classList.remove('peek-hover');
+    if (peekee) {
+      peekee.classList.remove('peek-hover');
+    }
   });
 }
 
@@ -272,6 +276,28 @@ function resetSheetScroll(sheet) {
   smoothScroll(sheet, 0, 'vertical', 800, 400);
 }
 
+// Keyboard navigation
+function addKeyboardNav() {
+  console.log('keyboard nav')
+  document.addEventListener('keydown', (e) => {
+    e = e || window.event;
+
+    let sheet;
+    if ((e.keyCode == '39') || (e.keyCode == '37')) {
+      sheet = document.querySelector('.sheet__outer.is-current');
+    }
+    if (e.keyCode == '37') {
+      initiateNav(sheet, -1);
+      // left arrow
+    }
+    else if (e.keyCode == '39') {
+      initiateNav(sheet, 1);
+      // right arrow
+    }
+  });
+}
+
+
 
 // ------------------------
 // Navigation: safety check
@@ -279,7 +305,6 @@ function resetSheetScroll(sheet) {
 function navSafetyCheck() {
   // don't do it mid navigation
   if (shouldNavSafetyCheck()) {
-    console.log('nav safety check');
     const wrapper = document.querySelector('.atf__wrapper');
     const sheet = wrapper.querySelector('.sheet__outer.is-current');
 
@@ -287,7 +312,6 @@ function navSafetyCheck() {
     const sheetPos = sheet.offsetLeft;
 
     if (!closeEnough(sheetPos, wrapperScroll)) {
-      console.log('not close enough! at', wrapperScroll, 'should be', sheetPos);
       smoothScroll(wrapper, sheetPos);
     }
   }
