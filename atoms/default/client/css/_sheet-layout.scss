@@ -26,7 +26,9 @@ $sheet-wide: 980px;
       flex-grow: 0;
       flex-shrink: 0;
       transform: translateX(0);
-      transition: transform 600ms ease-in-out;
+      // this is the opposite of ease-in-out to compensate
+      // how the scrolling animation works
+      transition: transform 600ms cubic-bezier(.5,.01,.5,1);
 
       overflow: hidden;
       .ios &,

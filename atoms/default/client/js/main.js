@@ -34,9 +34,13 @@ function shapeDom() {
     }
   });
 
-  var el = document.createElement('script');
-  el.src = '<%= atomPath %>/app.js';
-  interactiveRoot.appendChild(el);
+  var AppJsEl = document.createElement('script');
+  AppJsEl.src = '<%= atomPath %>/app.js';
+  interactiveRoot.appendChild(AppJsEl);
+
+  var MetaJsEl = document.createElement('script');
+  MetaJsEl.src = '<%= atomPath %>/autoupdate-meta.js';
+  interactiveRoot.appendChild(MetaJsEl);
 
 
   // Create meta area
