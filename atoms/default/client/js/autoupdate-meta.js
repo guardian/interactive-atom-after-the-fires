@@ -3,7 +3,7 @@ updateMeta();
 
 function updateMeta() {
   const metaEl = document.querySelector('.content__meta-container');
-  updatePubDate(metaEl);
+  // updatePubDate(metaEl);
   updateShareLinks(metaEl);
 }
 
