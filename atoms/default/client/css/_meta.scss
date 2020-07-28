@@ -37,12 +37,16 @@
   .meta__contact-wrap {
     .byline {
       margin: 0 0 4px;
+      a:hover {
+        border-bottom: 1px solid currentColor;
+      }
     }
     .byline a,
     .meta__contact-method a {
       color: #c70000;
       font-family: "Guardian Headline", "Guardian Egyptian Web", Georgia, serif;
       font-weight: bold;
+      text-decoration: none;
     }
     .meta__contact-method {
       display: inline;
