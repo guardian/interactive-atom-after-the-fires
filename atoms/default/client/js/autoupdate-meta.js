@@ -4,7 +4,9 @@ updateMeta();
 function updateMeta() {
   const metaEl = document.querySelector('.content__meta-container');
   updatePubDate(metaEl);
-  updateShareLinks(metaEl);
+  if (!document.body.classList.contains('ios') && !document.body.classList.contains('android')) {
+    updateShareLinks(metaEl);
+  }
 }
 
 function updateShareLinks(metaEl) {
@@ -32,17 +34,23 @@ function updateShareLinks(metaEl) {
 }
 
 function updatePubDate(metaEl) {
-  const pubdate = new Date(guardian.config.page.webPublicationDate)
   let dateEl = metaEl.querySelector('.content__dateline');
+  if (document.body.classList.contains('ios') || document.body.classList.contains('android')) {
+    // dateEl.style.display = 'none';
+  } else {
+    const pubdate = new Date(guardian.config.page.webPublicationDate)
 
-  const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const timezone = { '-120': 'BST', '-60': 'GMT' };
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const timezone = { '-120': 'BST', '-60': 'GMT' };
 
-  let dateLine = `${weekdays[pubdate.getDay()]} ${pubdate.getDate()} ${months[pubdate.getMonth()]} ${pubdate.getFullYear()} ${pubdate.getHours()}.${pubdate.getMinutes()} ${timezone[pubdate.getTimezoneOffset()]}`;
+    let dateLine = `${weekdays[pubdate.getDay()]} ${pubdate.getDate()} ${months[pubdate.getMonth()]} ${pubdate.getFullYear()} ${pubdate.getHours()}.${pubdate.getMinutes()} ${timezone[pubdate.getTimezoneOffset()]}`;
 
 
-  // dateEl.innerText = `${dateEl.innerText} :: ${dateLine}`
-  dateEl.innerText = dateLine;
+    // dateEl.innerText = `${dateEl.innerText} :: ${dateLine}`
+    dateEl.innerText = dateLine;
+
+  }
+
 
 }
