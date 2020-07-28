@@ -9,7 +9,6 @@ function interactiveSecondary() {
     let keyEl = document.querySelector('.atf__wrapper .sheet');
     if (keyEl) {
       clearInterval(int);
-
       unlockScroll();
       addNav();
 
@@ -370,8 +369,7 @@ function addEpic() {
 
     let epic = document.createElement('div');
     epic.classList.add('epic');
-    epic.innerHTML = `<div class='headline'>${copyH}</div><div class='copy'>${copyP}</div><a class='btn' href='https://support.theguardian.com/contribute?acquisitionData=%7B%22source%22%3A%22GUARDIAN_WEB%22%2C%22componentType%22%3A%22ACQUISITIONS_INTERACTIVE_SLICE%22%2C%22componentId%22%3A%22bushfires_interactive_July28%22%2C%22campaignCode%22%3A%22bushfires_interactive_July28%22%7D&INTCMP=bushfires_interactive_July28
-    '>${copyB}</a>`;
+    epic.innerHTML = `<div class='headline'>${copyH}</div><div class='copy'>${copyP}</div><a class='btn' href='https://support.theguardian.com/contribute?acquisitionData=%7B%22source%22%3A%22GUARDIAN_WEB%22%2C%22componentType%22%3A%22ACQUISITIONS_INTERACTIVE_SLICE%22%2C%22componentId%22%3A%22bushfires_interactive_July28%22%2C%22campaignCode%22%3A%22bushfires_interactive_July28%22%7D&INTCMP=bushfires_interactive_July28'>${copyB}</a>`;
 
     sheet.insertBefore(epic, sheetNav);
 
@@ -389,7 +387,7 @@ Math.easeInOutQuad = function (t, b, c, d) {
   t--;
   return -c / 2 * (t * (t - 2) - 1) + b;
 };
-gu
+
 const throttle = (func, limit) => {
   let inThrottle
   return function () {
