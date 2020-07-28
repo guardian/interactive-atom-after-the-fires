@@ -18,6 +18,39 @@
     }
   }
 
+  .badge {
+    border-bottom: 1px solid #dcdcdc;
+    margin-bottom: 8px;
+    padding-bottom: 0;
+    .badge__logo {
+      max-height: unset;
+      max-width: unset;
+      height: 180px;
+      width: 253px;
+    }
+    .badge__help {
+      display: inline-block;
+      position: relative;
+      bottom: 20px;
+    }
+
+    @include mq(desktop) {
+      // border-top: 1px solid #dcdcdc;
+      position: absolute;
+      top: -160px;
+      padding-top: 2px;
+      right: -200px;
+      width: 180px;
+    }
+
+    @include mq(leftCol) {
+      width: 340px;
+      right: -360px;
+      top: -6px;
+    }
+  }
+
+
   &:before,
   &:after {
     content: '';
