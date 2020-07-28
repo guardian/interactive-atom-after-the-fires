@@ -276,7 +276,13 @@ function smoothScroll(element, to, axis = 'horizontal', duration = 600, delay = 
 
 
 function resetSheetScroll(sheet) {
-  smoothScroll(sheet, 0, 'vertical', 800, 400);
+  const lastReset = sheet.dataset.lastReset;
+  const now = Date.now();
+
+  if (!(lastReset && (parseInt(lastReset) > (now - 2000)))) {
+    sheet.dataset.lastReset = now;
+    smoothScroll(sheet, 0, 'vertical', 800, 400);
+  }
 }
 
 // Keyboard navigation
