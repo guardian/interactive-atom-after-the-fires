@@ -17,28 +17,23 @@ function startInteractive() {
 // Restructure dom for this article
 // --------------------------------
 function shapeDom() {
+
+
   const interactiveBase = document.querySelector('.atf__wrapper'),
-    interactiveRoot = interactiveBase.parentElement.parentElement,
-    articleRoot = interactiveRoot.parentElement,
-    selectedElements = ['p', 'h2', 'figure', 'blockquote'].map((el) => ':scope > ' + el).join(','),
-    articleChildren = articleRoot.querySelectorAll(selectedElements);
+    interactiveRoot = interactiveBase.parentElement.parentElement;
 
-  // Move content to sheets
-  articleChildren.forEach((el) => {
-    if (el !== interactiveRoot) {
-      if (el.tagName == 'H2' || el === articleChildren[0]) {
-        newArticleSheet(interactiveBase);
-      }
-      processEmbed(el);
-      interactiveBase.querySelector('.sheet__outer:last-child .sheet__inner').appendChild(el);
-    }
-  });
+  moveContentToSheets(interactiveBase, interactiveRoot);
 
-  var AppJsEl = document.createElement('script');
-  AppJsEl.src = '<%= atomPath %>/app.js';
-  interactiveRoot.appendChild(AppJsEl);
+  setTimeout(() => {
+    moveContentToSheets(interactiveBase, interactiveRoot);
 
-  var MetaJsEl = document.createElement('script');
+    const AppJsEl = document.createElement('script');
+    AppJsEl.src = '<%= atomPath %>/app.js';
+    interactiveRoot.appendChild(AppJsEl);
+  }, 2000);
+
+
+  const MetaJsEl = document.createElement('script');
   MetaJsEl.src = '<%= atomPath %>/autoupdate-meta.js';
   interactiveRoot.appendChild(MetaJsEl);
 
@@ -53,6 +48,26 @@ function shapeDom() {
 
   // Show page
   document.body.classList.add('ready');
+}
+
+function moveContentToSheets(interactiveBase, interactiveRoot) {
+  const articleRoot = interactiveRoot.parentElement,
+    selectedElements = ['p', 'h2', 'figure', 'blockquote'].map((el) => ':scope > ' + el).join(','),
+    articleChildren = articleRoot.querySelectorAll(selectedElements);
+
+
+  // Move content to sheets
+  articleChildren.forEach((el, i) => {
+    if (el !== interactiveRoot) {
+      if (el.tagName == 'H2' || el === articleChildren[0]) {
+        newArticleSheet(interactiveBase);
+      }
+      processEmbed(el);
+      interactiveBase.querySelector('.sheet__outer:last-child .sheet__inner').appendChild(el);
+    }
+  });
+
+  return articleChildren.length;
 }
 
 function newArticleSheet(interactiveBase) {

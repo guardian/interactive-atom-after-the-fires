@@ -3,6 +3,7 @@ updateMeta();
 
 function updateMeta() {
   const metaEl = document.querySelector('.content__meta-container');
+
   updatePubDate(metaEl);
   if (!document.body.classList.contains('ios') && !document.body.classList.contains('android')) {
     updateShareLinks(metaEl);
