@@ -1,0 +1,60 @@
+.sheet .epic {
+  background-color: #FBF6EF;
+  color: #052962;
+
+  margin: 10px -10px 24px;
+  padding: 8px 10px 24px;
+  font-family: "Guardian Headline Full","Guardian Headline","Guardian Egyptian Web",Georgia,serif;
+  line-height: 26px;
+  font-size: 20px;
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+
+  @include mq(mobileLandscape) {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+  }
+  @include mq(tablet) {
+    margin-top: 24px;
+    margin-right: -98px;
+    padding-right: 100px;
+  }
+  @include mq(desktop) {
+    margin-top: 40px;
+    margin-right: -220px;
+    margin-bottom: -72px;
+    padding-bottom: 48px;
+    line-height: 32px;
+    font-size: 24px;
+    border-bottom: 0;
+  }
+  @include mq(leftCol) {
+    margin-right: -380px;
+    padding-right: 300px;
+  }
+
+  .headline {
+    font-weight: 700;
+  }
+  .copy {
+    font-weight: 200;
+  }
+  .btn {
+    font-size: 17px;
+    font-family: "Guardian Text Sans Web","Guardian Egyptian Web",Georgia,serif;
+    font-weight: 600;
+    background-color: #ffe500;
+    line-height: 19px;
+    height: 20px;
+    display: inline-block;
+    padding: 10px 18px 10px;
+    border-radius: 20px;
+    margin-top: 12px;
+    color: #052962;
+    margin-left: -2px;
+    @include mq(desktop) {
+      margin-top: 16px;
+    }
+  }
+}

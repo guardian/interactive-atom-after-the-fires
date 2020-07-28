@@ -11,7 +11,10 @@ function interactiveSecondary() {
       clearInterval(int);
 
       unlockScroll();
-      addNav()
+      addNav();
+
+      addEpic();
+
     }
   }, 200)
 }
@@ -348,6 +351,33 @@ setInterval(() => {
 }, 2000);
 
 
+// ---------------------
+// Commercial: adds epic
+// ---------------------
+function addEpic() {
+  const sheetNum = 3;
+
+  const sheet = document.querySelector(`.sheet__outer:nth-child(${sheetNum}) .sheet__inner`);
+  let sheetNav = false;
+  if (sheet) {
+    sheetNav = sheet.querySelector('.nav__wrapper');
+  }
+
+  if (sheetNav) {
+    const copyH = 'Open, independent journalism has never mattered more';
+    const copyP = 'We need your support to sustain our ambitious, high-impact reporting on Australia and the climate emergency';
+    const copyB = 'Support the Guardian';
+
+    let epic = document.createElement('div');
+    epic.classList.add('epic');
+    epic.innerHTML = `<div class='headline'>${copyH}</div><div class='copy'>${copyP}</div><a class='btn' href='https://support.theguardian.com/contribute?acquisitionData=%7B%22source%22%3A%22GUARDIAN_WEB%22%2C%22componentType%22%3A%22ACQUISITIONS_INTERACTIVE_SLICE%22%2C%22componentId%22%3A%22bushfires_interactive_July28%22%2C%22campaignCode%22%3A%22bushfires_interactive_July28%22%7D&INTCMP=bushfires_interactive_July28
+    '>${copyB}</a>`;
+
+    sheet.insertBefore(epic, sheetNav);
+
+  }
+
+}
 
 // ~~~~~~~~~~~~~~~~
 // Helper functions
