@@ -22,32 +22,40 @@
     border-bottom: 1px solid #dcdcdc;
     margin-bottom: 8px;
     padding-bottom: 0;
+
+    @include mq(tablet) {
+      position: absolute;
+      top: 7px;
+      right: 0;
+      background-color: #fff;
+      padding-top: 4px;
+      padding-left: 10px;
+      border-left: 1px solid #dcdcdc;
+      border-bottom: 0;
+      z-index: 20;
+      height: 156px;
+      width: 220px;
+    }
+    @include mq(leftCol) {
+      border-top: 0;
+    }
+
     .badge__logo {
       max-height: unset;
       max-width: unset;
-      height: 180px;
-      width: 253px;
+      height: 110px;
+      width: 215px;
+      padding-bottom: 6px;
     }
     .badge__help {
       display: inline-block;
       position: relative;
       bottom: 20px;
+      font-size: 12px;
+      color: #767676;
+      font-family: "Guardian Text Sans Web","Guardian Egyptian Web",Georgia,serif;
     }
 
-    @include mq(desktop) {
-      // border-top: 1px solid #dcdcdc;
-      position: absolute;
-      top: -160px;
-      padding-top: 2px;
-      right: -200px;
-      width: 180px;
-    }
-
-    @include mq(leftCol) {
-      width: 340px;
-      right: -360px;
-      top: -6px;
-    }
   }
 
 
